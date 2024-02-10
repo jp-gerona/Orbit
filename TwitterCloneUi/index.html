@@ -49,32 +49,33 @@
         Welcome back, <br /> Captain.
       </h1>
       <div class="signup-container">
-        <form id="JS-loginForm" autocomplete="off" spellcheck="false">
+        <form id="JS-loginForm" 
+          autocomplete="off" 
+          spellcheck="false"
+          action="/api/v1/auth/login"
+          method="post"
+        >
 
           <div class="JS-formGroup">
             <div class="text-field">
               <input 
-                required 
-                minlength="4"
                 type="text" 
-                id="Username"
+                id="username"
               />
-              <label class="placeholder" for="Username">Username</label>
-              <label class="helper" for="Username"></label>
+              <label class="placeholder" for="username">Username</label>
+              <label class="helper" for="username"></label>
             </div>
           </div>
 
           <div class="JS-formGroup">
             <div class="text-field">
               <input 
-                required 
-                minlength="8"
                 type="password" 
-                id="Password"
+                id="password"
               />
-              <label class="placeholder" for="Password">Password</label>
+              <label class="placeholder" for="password">Password</label>
               <i class="ri-eye-off-fill"></i>
-              <label class="helper" for="Password"></label>
+              <label class="helper" for="password"></label>
             </div>       
           </div>
 
@@ -90,6 +91,7 @@
     </section>
   </main>
 
+  <script type="module" src="scripts/login.js"></script>
   <script src="./scripts/utils/preLoader.js"></script>
 </body>
 </html>
