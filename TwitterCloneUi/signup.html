@@ -5,6 +5,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
   <link rel="preload" href="./styles/shared/general.css" as="style">
   <link rel="preload" href="./styles/shared/forms.css" as="style">
+  <link rel="preload" href="./styles/pages/signup.css" as="style">
 
   <!-- Metadata of the HTML page -->
   <meta charset="UTF-8">
@@ -15,7 +16,7 @@
   <!-- CSS files are loaded here -->
   <link rel="stylesheet" href="./styles/shared/general.css">
   <link rel="stylesheet" href="./styles/shared/forms.css">
-  <link rel="stylesheet" href="./styles/pages/login.css">
+  <link rel="stylesheet" href="./styles/pages/signup.css">
 
   <!-- Remix Icons for icons -->
   <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet"/>
@@ -36,7 +37,7 @@
       <p>Loading the universe . . .</p>
     </div>
   </section>
-  
+
   <header>
     <div class="logo-header">
       <img src="./images/logo/Cosmos.svg" alt="Logo">
@@ -44,13 +45,13 @@
   </header>
   
   <main>
-    <img src="">
-    <section class="login-section flex-center">
+    <section class="signup-section flex-center">
       <h1 class="section-title">
-        Welcome back, <br /> Captain.
+        Start exploring <br/> the cosmos.
       </h1>
+      <p>And it's free.</p>
       <div class="signup-container">
-        <form id="JS-loginForm" autocomplete="off" spellcheck="false">
+        <form id="JS-signupForm" action="index.html" autocomplete="off" spellcheck="false">
 
           <div class="JS-formGroup">
             <div class="text-field">
@@ -58,10 +59,10 @@
                 required 
                 minlength="4"
                 type="text" 
-                id="Username"
+                id="username"
               />
-              <label class="placeholder" for="Username">Username</label>
-              <label class="helper" for="Username"></label>
+              <label class="placeholder" for="username">Username</label>
+              <label class="helper" for="username"></label>
             </div>
           </div>
 
@@ -71,26 +72,41 @@
                 required 
                 minlength="8"
                 type="password" 
-                id="Password"
+                id="password"
               />
-              <label class="placeholder" for="Password">Password</label>
+              <label class="placeholder" for="password">Password</label>
               <i class="ri-eye-off-fill"></i>
-              <label class="helper" for="Password"></label>
+              <label class="helper" for="password"></label>
             </div>       
           </div>
 
-          <button type="submit" class="btn primary-btn link-2">
-            Log In <i class="ri-arrow-right-line"></i>
+          <div class="JS-formGroup">
+            <div class="text-field">
+              <input 
+                required
+                match="password" 
+                type="password" 
+                id="confirmPassword"
+              />
+              <label class="placeholder" for="confirmPassword">Confirm Password</label>
+              <i class="ri-eye-off-fill"></i>
+              <label class="helper" for="confirmPassword"></label>
+            </div>
+          </div>
+
+          <button type="submit" class="btn primary-btn link-1">
+            Sign Up <i class="ri-arrow-right-up-line"></i>
           </button>
 
         </form>
         <p class="footnote link-2">
-          Don't have an account? <a href="signup.html">Sign up<i class="ri-arrow-right-line"></i></a> 
+          Have an account? <a href="index.html">Log in<i class="ri-arrow-right-line"></i></a> 
         </p>
       </div>
     </section>
   </main>
-
-  <script src="./scripts/utils/preLoader.js"></script>
+  
+  <script src="scripts/utils/preLoader.js"></script>
+  <script type="module" src="scripts/signup.js"></script>
 </body>
 </html>

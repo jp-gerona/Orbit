@@ -1,0 +1,287 @@
+/* *Google Fonts: Inter (weight 500, 700) and DM Sans (weight 400) */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz@9..40&family=Inter:wght@500;700&display=swap');
+
+/* *Website Colors Set-up */
+:root {
+  /* ?Color Shades */
+  --black: #000;
+  --gray-600: #666;
+  --white-100: hsla(0,0%,100%,0.1);
+  --white-200: hsla(0,0%,100%,0.2);
+  --white-300: hsla(0,0%,100%,0.333);
+  --white-500: hsla(0,0%,100%,0.5);
+  --white-800: hsla(0,0%,100%,0.82);
+  --white: #fff;
+
+  /* ?Color Palette */
+  --background: var(--black);
+  --title: var(--white);
+  --text: var(--white-800);
+  --muted: var(--white-500);
+  --link: var(--white);
+  --link-hover: var(--white-800);
+
+  /* ?Validations */
+  --success: hsl(123, 38.5%, 56.7%);
+  --warning: hsl(38, 100%, 57.5%);
+  --error: hsl(4, 89.6%, 58.4%);
+}
+
+
+/* *Font and Headings Set-up */
+body {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+}
+
+h1, h2 {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+}
+
+h3, h4, h5 {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+}
+
+html {font-size: 100%;}
+
+h1 {font-size: 4.110rem;}
+
+h2 {font-size: 3.158rem;}
+
+h3 {font-size: 2.369rem;}
+
+h4 {font-size: 1.777rem;}
+
+h5 {font-size: 1.333rem;}
+
+small {font-size: 0.750rem;}
+
+/* *General Set-up */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: var(--title);
+  background-color: var(--background);
+}
+
+p {
+  color: var(--text);
+}
+
+a {
+  text-decoration: none;
+  color: var(--link);
+  transition: all 0.2s ease;
+}
+
+li {
+  list-style: none;
+}
+
+/* *Reusable Styles Set-up */
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.section-title {
+  text-align: center;
+}
+
+.success {
+  color: var(--success);
+}
+
+.warning {
+  color: var(--warning);
+}
+
+.error {
+  color: var(--error);
+}
+
+.link-1:hover i {
+  transform: translate(2px ,-3px);
+}
+
+.link-2:hover i {
+  transform: translate(3px);
+}
+
+/* *Components Set-up */
+/* ?Buttons */
+button, input {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 100%;
+}
+
+.btn {
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.primary-btn {
+  z-index: 2;
+  white-space: nowrap;
+  color: var(--background);
+  display: flex;
+  align-items: center;
+  gap: 0.3em;
+  background-color: var(--title);
+  border-radius: 6px;
+  padding: 1em 2em;
+  transition: transform 0.2s ease;
+}
+
+.primary-btn i {
+  transition: transform 0.2s ease;
+}
+
+.primary-btn:hover {
+  transform: translateY(-1px);
+}
+
+/* ?Loader */
+.loader-section {
+  background-color: var(--background);
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.loader-icon-wrapper, 
+.loader-logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.loader-logo {
+  margin-top: 130px;
+}
+
+.loader-logo p {
+  margin-top: 20px;
+  color: var(--text);
+  font-size: small;
+}
+
+.loader-logo img {
+  width: 200px;
+}
+ 
+
+.loader {
+  transform: scale(2);
+  --duration: 3s;
+  width: 44px;
+  height: 44px;
+  position: relative;
+}
+
+.loader img {
+  background-size: contain;
+  width: 6px;
+  height: 6px;
+  position: absolute;
+  display: block;
+  top: 37px;
+  left: 19px;
+  transform: translate(-18px, -18px);
+  animation: dotRect var(--duration) cubic-bezier(0.785, 0.135, 0.15, 0.86) infinite;
+}
+
+.loader svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.loader svg circle {
+  fill: none;
+  stroke: var(--title);
+  stroke-width: 4px;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.loader svg circle {
+  stroke-dasharray: 160 40 160 40;
+  stroke-dashoffset: 80;
+  animation: pathCircle var(--duration) cubic-bezier(0.785, 0.135, 0.15, 0.86) infinite;
+}
+
+@keyframes dotRect {
+  25% {
+    transform: translate(0, 0);
+  }
+
+  50% {
+    transform: translate(18px, -18px);
+  }
+
+  75% {
+    transform: translate(0, -36px);
+  }
+
+  100% {
+    transform: translate(-18px, -18px);
+  }
+}
+
+@keyframes pathCircle {
+  25% {
+    stroke-dashoffset: 130;
+  }
+
+  50% {
+    stroke-dashoffset: 180;
+  }
+
+  75% {
+    stroke-dashoffset: 230;
+  }
+
+  100% {
+    stroke-dashoffset: 280;
+  }
+}
+
+.loader {
+  display: inline-block;
+  margin: 0 16px;
+}
+
+.fade-out {
+  animation: fadeOut 1s ease;
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+}

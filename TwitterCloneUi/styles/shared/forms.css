@@ -1,0 +1,149 @@
+/* ?Text Fields */
+input {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 100%;
+}
+
+.text-field {
+  position: relative;
+  margin: 2.2rem 0;
+}
+
+.text-field .placeholder {
+  pointer-events: none;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 12px;
+  color: var(--muted);
+  padding: 0px 3px;
+  transition: 0.2s ease;
+}
+
+.text-field .helper {
+  position: absolute;
+  bottom: -21px;
+  left: 15px;
+  color: var(--text);
+  font-size: small;
+  pointer-events: none;
+}
+
+.text-field i {
+  pointer-events: none;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 12px;
+  color: var(--muted);
+}
+
+
+.text-field input {
+  height: 48px;
+  width: 300px;
+  padding: 0 15px;
+  color: var(--text);
+  background-color: transparent;
+  outline: none;
+  border: 1px solid var(--muted);
+  border-radius: 6px;
+  transition: border-color 0.3s ease;
+}
+
+.text-field input:focus {
+  border: 2px solid;
+}
+
+.text-field input:focus,
+.text-field input:focus~.placeholder {
+  border-color: var(--title);
+  color: var(--title);
+}
+
+.text-field input:focus~.placeholder,
+.text-field input.has-text~.placeholder {
+  top: 0;
+  font-size: small;
+  background-color: var(--background);
+}
+
+.text-field input:focus~i {
+  opacity: 1;
+}
+
+/* ?Validation Styles for Text Fields */
+/* *Success */
+.text-field.success input {
+  border-color: var(--success);
+}
+
+.text-field.error .placeholder {
+  color: var(--success);
+}
+
+.text-field.success input:focus~.placeholder,
+.text-field.success input:valid~.placeholder {
+  color: var(--success);
+}
+
+/* *Error */
+.text-field.error input {
+  border-color: var(--error);
+}
+
+.text-field.error input:focus {
+  border-color: var(--warning);
+}
+
+.text-field.error .placeholder {
+  color: var(--error);
+}
+
+.text-field.error input:focus~.placeholder {
+  color: var(--warning);
+}
+
+.text-field.error .helper {
+  color: var(--error);
+  animation: errorShake 0.3s ease-in-out;
+}
+
+.text-field.error input:focus~.helper {
+  color: var(--warning);
+}
+
+@keyframes errorShake {
+  0% { 
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(3px);
+  }
+  50% {
+    transform: translateX(-3px);
+  }
+  75% {
+    transform: translateX(3px);
+  }
+  100% { 
+    transform: translateX(0);
+  }
+}
+
+/* ?Footnote Link Styles */
+section .footnote {
+  margin-top: 1rem;
+  color: var(--muted);
+}
+
+section .footnote a i {
+  display: inline-block; 
+  transition: transform 0.2s ease;
+}
+
+section .footnote a:hover {
+  transition: all 0.2s ease;
+  color: var(--link-hover);
+}
