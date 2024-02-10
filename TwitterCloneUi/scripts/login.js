@@ -116,5 +116,12 @@ const validateForm = async (formSelector) => {
 };
 
 validateForm('#JS-loginForm'); */
-await postLogIn();
+const formElement = document.querySelector('#JS-loginForm');
+
+formElement.addEventListener('submit', async event => {
+  event.preventDefault();
+  console.log('Success! Valid form submitted.');
+  await postLogIn();
+});
+
 handleInput('.text-field input');
