@@ -5,7 +5,7 @@ import handleInput from './utils/inputUtils.js';
  * checks if the input passes each rule, and shows an error if not.
  * Handles real-time validation on blur and on submit.
  */
-const validateForm = formSelector => {
+const validateForm = (formSelector, callback) => {
   const formElement = document.querySelector(formSelector);
 
   /*
@@ -100,14 +100,25 @@ const validateForm = formSelector => {
 
   formElement.addEventListener('submit', event => {
     const formValid = validateAllFormGroups(formElement);
+    event.preventDefault();
 
-    if (!formValid) {
-      event.preventDefault();
-    } else {
-      console.log('success');
+    if (formValid) {
+      console.log('Success! Valid form submitted.');
+      callback(formElement);
     }
   });
 };
 
-validateForm('#JS-signupForm');
+const sendtoAPI = (formElement) => {
+  const formObject = Array.from(formElement.elements)
+    .filter(element => element.type !== 'submit')
+    .reduce((accumulator, element) => ({
+      ...accumulator, [element.id]: element.value
+    }), {});
+
+    console.log(formObject);
+    // todo: submit to API 
+}
+
+validateForm('#JS-signupForm', sendtoAPI);
 handleInput('.text-field input');
