@@ -111,7 +111,7 @@ const validateForm = (formSelector, callback) => {
 
 const sendtoAPI = (formElement) => {
   const formObject = Array.from(formElement.elements)
-    .filter(element => element.type !== 'submit')
+    .filter(element => element.type !== 'submit' && element.id !== 'confirmPassword')
     .reduce((accumulator, element) => ({
       ...accumulator, [element.id]: element.value
     }), {});
