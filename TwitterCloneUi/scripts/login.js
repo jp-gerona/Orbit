@@ -1,6 +1,8 @@
 import handleInput from './utils/inputUtils.js';
+import { postLogIn } from './postUsers.js';
 
-async function usernameExists(username) {
+// todo: validation for api in login
+/*async function usernameExists(username) {
   const response = await fetch('/api/v1/auth/register', {
     method: 'POST',
     headers: {
@@ -113,5 +115,6 @@ const validateForm = async (formSelector) => {
   });
 };
 
-validateForm('#JS-loginForm');
+validateForm('#JS-loginForm'); */
+await postLogIn();
 handleInput('.text-field input');

@@ -1,4 +1,5 @@
 import handleInput from './utils/inputUtils.js';
+import { postCreateUser } from './postUsers.js';
 /*
  * Validates the form matched by the provided selector. 
  * Loops through all validation rules defined in validationOptions, 
@@ -109,7 +110,7 @@ const validateForm = (formSelector, callback) => {
   });
 };
 
-const sendtoAPI = (formElement) => {
+const sendtoAPI =  async (formElement) => {
   const formObject = Array.from(formElement.elements)
     .filter(element => element.type !== 'submit' && element.id !== 'confirmPassword')
     .reduce((accumulator, element) => ({
@@ -117,7 +118,7 @@ const sendtoAPI = (formElement) => {
     }), {});
 
     console.log(formObject);
-    // todo: submit to API 
+    await postCreateUser(formObject);
 }
 
 validateForm('#JS-signupForm', sendtoAPI);
