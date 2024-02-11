@@ -1,5 +1,5 @@
 import handleInput from './utils/inputUtils.js';
-import { postCreateUser } from './postUsers.js';
+import { postCreateUser } from './fetchAPI.js';
 /*
  * Validates the form matched by the provided selector. 
  * Loops through all validation rules defined in validationOptions, 
