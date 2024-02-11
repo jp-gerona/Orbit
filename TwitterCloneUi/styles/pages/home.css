@@ -2,7 +2,99 @@ body {
   overflow-x: hidden;
 }
 
-.profile-photo img {
-  display: block;
+main {
+  margin-top: 4.2rem;
+}
+
+main .container {
+  display: grid;
+  grid-template-columns: 30vh auto 20vw;
+  column-gap: 2rem;
+}
+
+main .container .left {
+  height: max-content;
+  position: sticky;
+  top: 5.4rem;
+}
+
+.left .profile-card {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+  text-align: center;
+  text-wrap: nowrap;
+  position: relative;
+  background-color: var(--card);
+  border-radius:  var(--card-border-radius);
+  padding: var(--card-padding);
+  align-items: center;
   width: 100%;
+  overflow: hidden;
+}
+
+.left .profile-card::before {
+  content: '';
+  position: absolute;
+  height: 6px;
+  width: 100%;
+  top: 0;
+  background: var(--gradient);
+  background-size: 300%;
+  animation: gradientChange 16s infinite alternate;
+}
+
+@keyframes gradientChange {
+  0% {
+    background-position: left;
+  }
+  100% {
+    background-position: right;
+  }
+}
+
+.left .profile-card .handle p {
+  margin-top: 6px;
+  font-size: small;
+}
+
+.left .profile-card .profile-photo {
+  background-color: var(--title);
+  padding: 2px;
+  z-index: 2;
+}
+
+.left .sidebar-card {
+  margin-top: 0.8rem;
+  background-color: var(--card);
+  border-radius: var(--card-border-radius);
+  padding: var(--card-padding);
+}
+
+.left .sidebar-card .menu-item {
+  cursor: pointer;
+  display: flex;
+  column-gap: 1.2em;
+  align-items: center;
+  height: 3.5rem;
+  border-radius: var(--card-border-radius);
+  transition: background-color 0.3s ease;
+}
+
+.left .sidebar-card .menu-item:hover {
+  background-color: var(--card-focused);
+}
+
+.left .sidebar-card i {
+  margin-left: 1rem;
+  font-size: 1.2rem;
+}
+
+.left .sidebar-card .active i,
+.left .sidebar-card .active p {
+    color: var(--primary);
+}
+
+.left label {
+  margin-top: 0.8rem;
 }
