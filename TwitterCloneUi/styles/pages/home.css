@@ -1,0 +1,8 @@
+body {
+  overflow-x: hidden;
+}
+
+.profile-photo img {
+  display: block;
+  width: 100%;
+}

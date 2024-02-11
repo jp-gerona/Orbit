@@ -21,6 +21,8 @@
   --link: var(--white);
   --link-hover: var(--white-800);
 
+  --card: hsl(244, 44%, 8%);
+
   /* ?Validations */
   --success: hsl(123, 38.5%, 56.7%);
   --warning: hsl(38, 100%, 57.5%);
@@ -78,12 +80,6 @@ p {
   color: var(--text);
 }
 
-a {
-  text-decoration: none;
-  color: var(--link);
-  transition: all 0.2s ease;
-}
-
 li {
   list-style: none;
 }
@@ -93,6 +89,18 @@ li {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.container {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.profile-photo {
+  width: 2.7rem;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  overflow: hidden;
 }
 
 .section-title {
@@ -109,6 +117,17 @@ li {
 
 .error {
   color: var(--error);
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.link-1 a,
+.link-2 a {
+  text-decoration: none;
+  color: var(--link);
+  transition: all 0.2s ease;
 }
 
 .link-1:hover i {
@@ -179,7 +198,7 @@ button, input {
 }
 
 .loader-logo p {
-  margin-top: 20px;
+  margin-top: 30px;
   color: var(--text);
   font-size: small;
   animation: fadeText 3s infinite;
@@ -285,13 +304,24 @@ button, input {
   animation: fadeOut 1s ease-out;
 }
 
+.zoom-out {
+  animation: zoomOut 1s ease-out;
+}
+
 @keyframes fadeOut {
   from {
     opacity: 1;
-    transform: scale(1);
   }
   to {
     opacity: 0;
+  }
+}
+
+@keyframes zoomOut {
+  from {
+    transform: scale(1);
+  }
+  to {
     transform: scale(0.9);
   }
 }
