@@ -37,6 +37,8 @@ export async function postLogIn() {
       console.log('successful')
       const userToken = await res.text();
       console.log(`User token: ${userToken}`);
+      localStorage.setItem("token", userToken)
+      console.log(localStorage)
   } else {
       console.log('login fails')
   }
