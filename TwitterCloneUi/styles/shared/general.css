@@ -183,6 +183,19 @@ button, input {
   margin-top: 20px;
   color: var(--text);
   font-size: small;
+  animation: fadeText 3s infinite;
+}
+
+@keyframes fadeText {
+  0% { 
+    color: var(--text); 
+  }
+  50% { 
+    color: var(--muted); 
+  } 
+  100% { 
+    color: var(--text); 
+  } 
 }
 
 .loader-logo img {
@@ -272,7 +285,7 @@ button, input {
 }
 
 .fade-out {
-  animation: fadeOut 1s ease;
+  animation: fadeOut 1s ease-out;
 }
 
 @keyframes fadeOut {
