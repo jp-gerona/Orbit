@@ -13,9 +13,9 @@ export async function postCreateUser(formObject) {
       })
   })
   if(res.ok){
-      console.log('successful')
+      return true;
   } else {
-      console.log('registration fails')
+      return false;
   }
 }
 

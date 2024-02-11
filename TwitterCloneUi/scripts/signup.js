@@ -104,10 +104,22 @@ const validateForm = (formSelector, callback) => {
     event.preventDefault();
 
     if (formValid) {
-      console.log('Success! Valid form submitted.');
       callback(formElement);
     }
   });
+};
+
+const handlePostCreateUserResult = async (formElement, result) => {
+  const usernameTextField = formElement.querySelector('#username').parentNode;
+  const usernamePlaceholder = usernameTextField.querySelector('.placeholder');
+  const usernameHelper = usernameTextField.querySelector('.helper');
+
+  // todo I dont know how to make this persist because it gets overidden by the validateSingleFormGroup.
+  if (!result) {
+    usernameHelper.textContent = `${usernamePlaceholder.textContent} already exists.`;
+    usernameTextField.classList.add('error');
+    usernameTextField.classList.remove('success');
+  }
 };
 
 const sendtoAPI =  async (formElement) => {
@@ -117,8 +129,13 @@ const sendtoAPI =  async (formElement) => {
       ...accumulator, [element.id]: element.value
     }), {});
 
-    console.log(formObject);
-    await postCreateUser(formObject);
+    try {
+      const result = await postCreateUser(formObject);
+      await handlePostCreateUserResult(formElement, result);
+    } catch (error) {
+      console.error('Error occurred while creating user:', error);
+      // Handle error if necessary
+    }
 }
 
 validateForm('#JS-signupForm', sendtoAPI);
