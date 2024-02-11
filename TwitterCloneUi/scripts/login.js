@@ -1,5 +1,5 @@
 import handleInput from './utils/inputUtils.js';
-import { postLogIn } from './postUsers.js';
+import { postLogIn } from './fetchAPI.js';
 
 // todo: validation for api in login
 /*async function usernameExists(username) {
