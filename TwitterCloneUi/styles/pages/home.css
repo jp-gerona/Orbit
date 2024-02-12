@@ -9,7 +9,7 @@ main {
 main .container {
   display: grid;
   grid-template-columns: 30vh auto 20vw;
-  column-gap: 2rem;
+  column-gap: 1.2rem;
 }
 
 main .container .left {
@@ -21,13 +21,11 @@ main .container .left {
 .left .profile-card {
   display: flex;
   flex-direction: column;
-  row-gap: 1rem;
-  text-align: center;
-  text-wrap: nowrap;
   position: relative;
   background-color: var(--card);
   border-radius:  var(--card-border-radius);
   padding: var(--card-padding);
+  justify-content: center;
   align-items: center;
   width: 100%;
   overflow: hidden;
@@ -36,8 +34,9 @@ main .container .left {
 .left .profile-card::before {
   content: '';
   position: absolute;
-  height: 6px;
+  height: 4px;
   width: 100%;
+  left: 0;
   top: 0;
   background: var(--gradient);
   background-size: 300%;
@@ -53,14 +52,26 @@ main .container .left {
   }
 }
 
+.left .profile-card .handle-container {
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  column-gap: 8px;
+}
+
 .left .profile-card .handle p {
-  margin-top: 6px;
+  margin-top: 4px;
+  font-size: small;
+}
+
+.left .profile-card .status {
+  width: 100%;
+  text-align: center;
+  margin-top: 0.8rem;
   font-size: small;
 }
 
 .left .profile-card .profile-photo {
-  background-color: var(--card-white);
-  padding: 2px;
   z-index: 2;
 }
 
@@ -122,11 +133,6 @@ main .container .left {
   background-color: var(--card);
   white-space: pre-wrap;
   overflow: hidden;
-}
-
-.middle .post-card .post-container hr {
-  margin-bottom: 0.6rem;
-  border: 1px solid var(--card-focused);
 }
 
 .middle .post-card .post-container .button-container {

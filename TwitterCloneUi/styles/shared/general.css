@@ -68,7 +68,7 @@ h3 {font-size: 2.369rem;}
 
 h4 {font-size: 1.777rem;}
 
-h5 {font-size: 1.333rem;}
+h5 {font-size: 1.222rem;}
 
 small {font-size: 0.750rem;}
 
@@ -111,10 +111,17 @@ input {
   margin: 0 auto;
 }
 
+hr {
+  margin-bottom: 0.6rem;
+  border: 1px solid var(--card-focused);
+}
+
 .profile-photo {
   width: 3rem;
   aspect-ratio: 1/1;
   border-radius: 50%;
+  background: var(--gradient);
+  padding: 1px;
   overflow: hidden;
 }
 
