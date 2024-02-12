@@ -135,7 +135,7 @@ main .container .left {
   outline: none;
   border: none;
   width: 100%;
-  padding: 1rem 0;
+  padding-top: 1rem;
   resize: none;
   color: var(--text);
   background-color: var(--card);
