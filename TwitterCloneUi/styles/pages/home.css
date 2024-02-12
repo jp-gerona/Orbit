@@ -20,7 +20,7 @@ main .container .left {
   top: 4.2rem;
 }
 
-/* *Left */
+/* *Left Side */
   /* *Profile Card */
 .left .profile-card {
   display: flex;
@@ -116,7 +116,7 @@ main .container .left {
   margin-top: 0.9rem;
 }
 
-/* *Middle */
+/* *Middle Side */
   /* *Create Post Card */
 .middle .post-card {
   width: 100%;
@@ -159,6 +159,7 @@ main .container .left {
   grid-template-columns: auto 1fr;
 }
 
+  /* *Post Card */
 .middle .feed-card .post-container {
   margin-left: 1rem;
 }
@@ -191,12 +192,15 @@ main .container .left {
   right: 0.4rem;
 }
 
+/* *Right Side */
+  /* *Trending Card */
 .right .trending-card {
   background-color: var(--card);
   border-radius: var(--card-border-radius);
   padding: var(--card-padding);
 }
 
+  /* *Suggest Follows Card */
 .right .suggest-follows-card {
   background-color: var(--card);
   border-radius: var(--card-border-radius);
