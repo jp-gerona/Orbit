@@ -4,7 +4,7 @@
   <!-- Resource prioritization -->
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
   <link rel="preload" href="./styles/shared/general.css" as="style">
-  <link rel="preload" href="./styles/pages/signup.css" as="style">
+  <link rel="preload" href="./styles/pages/home.css" as="style">
 
   <!-- Metadata of the HTML page -->
   <meta charset="UTF-8">
@@ -49,24 +49,24 @@
         <a class="profile-card">
           <div class="handle-container">
             <div class="profile-photo">
-              <img src="./images/profile-photo.png" alt="Profile Photo">
+              <img src="./images/profile-photo-1.png" alt="Profile Photo">
             </div>
             <div class="handle">
-              <h5>Space Traveller</h5> 
-              <p class="muted">@SpaceTraveller</p> 
+              <h5>Orbit User</h5> 
+              <p class="muted">@OrbitUser</p> 
             </div>           
           </div>  
           <div class="status">
             <hr>
-            <p class="muted">is currently <span class="success">in orbit <i class="ri-meteor-line"></i></span></p> 
+            <p>is currently <span class="success">in orbit <i class="ri-meteor-fill"></i></span></p> 
           </div>
         </a>
 
         <div class="sidebar-card">
-          <a class="menu-item active">
+          <a class="menu-item active" href="./home.html">
             <span><i class="ri-home-2-fill"></i></span><p>Home</p>
           </a>
-          <a class="menu-item">
+          <a class="menu-item" href="./profile.html">
             <span><i class="ri-user-smile-line"></i></span><p>Profile</p>
           </a>
           <a class="menu-item">
@@ -78,7 +78,7 @@
           <a class="menu-item">
             <span><i class="ri-settings-3-line"></i></span><p>Settings</p>
           </a>
-          <a class="menu-item">
+          <a class="menu-item" href="./index.html">
             <span><i class="ri-logout-box-line"></i></span><p>Logout</p>
           </a>
         </div>
@@ -91,8 +91,9 @@
         <form id="JS-createPost" class="post-card" autocomplete="off">
 
             <div class="profile-photo">
-              <img src="./images/profile-photo.png" alt="Profile Photo">
+              <img src="./images/profile-photo-1.png" alt="Profile Photo">
             </div>
+
             <div class="post-container">
               <textarea 
                 required
@@ -109,6 +110,115 @@
             </div>
            
         </form>
+
+        <div class="posts-feed">
+
+          <!-- *First Example Placeholder -->
+          <div class="feed-card">
+            <div class="profile-photo">
+              <img src="./images/profile-photo-1.png" alt="Profile Photo">
+            </div>
+            <div class="post-container">
+              <div class="user">
+                <h5>Orbit User <span class="handle muted">@OrbitUser</span></h5>
+                <p class="muted">Just now</p>
+              </div>
+
+              <div class="post-content">
+                Mic check mic check <span class="highlight">#helloWorld</span>
+              </div>
+  
+              <div class="like-button">
+                <i class="ri-heart-line"></i>
+                Like Post
+              </div>
+
+            </div>        
+            <div class="post-logo">
+              <i class="ri-chat-smile-2-line"></i>
+            </div>
+          </div>
+
+          <!-- *Second Example Placeholder -->
+          <div class="feed-card">
+            <div class="profile-photo">
+              <img src="./images/profile-photo-2.png" alt="Profile Photo">
+            </div>
+            <div class="post-container">
+              <div class="user">
+                <h5>Lebron James <span class="handle muted">@LebronJames</span></h5>
+                <p class="muted">6 Hours Ago</p>
+              </div>
+
+              <div class="post-content">
+                BRO DID U SEE DRAKE'S MEAT? GADDAMN! <span class="highlight">#ISHOWMEAT</span>
+              </div>
+  
+              <div class="like-button">
+                <i class="ri-heart-line"></i>
+                Like Post
+              </div>
+
+            </div>        
+            <div class="post-logo">
+              <i class="ri-chat-smile-2-line"></i>
+            </div>
+          </div>
+
+          <!-- *Third Example Placeholder -->
+          <div class="feed-card">
+            <div class="profile-photo">
+              <img src="./images/profile-photo-3.png" alt="Profile Photo">
+            </div>
+            <div class="post-container">
+              <div class="user">
+                <h5>FeddiFatBear <span class="handle muted">@FeddiFatBear</span></h5>
+                <p class="muted">1 Day Ago</p>
+              </div>
+
+              <div class="post-content">
+                Extension po pls
+              </div>
+  
+              <div class="like-button highlight">
+                <i class="ri-heart-fill"></i>
+                Unlike Post
+              </div>
+
+            </div>        
+            <div class="post-logo">
+              <i class="ri-chat-smile-2-line"></i>
+            </div>
+          </div>
+
+          <!-- *Another Third Example Placeholder for scroll purpose -->
+          <div class="feed-card">
+            <div class="profile-photo">
+              <img src="./images/profile-photo-3.png" alt="Profile Photo">
+            </div>
+            <div class="post-container">
+              <div class="user">
+                <h5>FeddiFatBear <span class="handle muted">@FeddiFatBear</span></h5>
+                <p class="muted">1 Day Ago</p>
+              </div>
+
+              <div class="post-content">
+                Extension po pls
+              </div>
+  
+              <div class="like-button highlight">
+                <i class="ri-heart-fill"></i>
+                Unlike Post
+              </div>
+
+            </div>        
+            <div class="post-logo">
+              <i class="ri-chat-smile-2-line"></i>
+            </div>
+          </div>
+          
+        </div>
+
       </div>
 
       <div class="right">

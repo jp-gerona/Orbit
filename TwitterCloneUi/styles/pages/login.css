@@ -3,8 +3,8 @@ body {
   overflow: hidden; 
 }
 
-.logo-header {
-  top: 2.5rem;
+.logo-header img {
+  margin-top: 2.5rem;
 }
 
 .login-section {

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Resource prioritization -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preload" href="./styles/shared/general.css" as="style">
+  <link rel="preload" href="./styles/shared/forms.css" as="style">
+
+  <!-- Metadata of the HTML page -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="./images/logo/favicon.ico" type="image/x-icon">
+  <title>Orbit</title>
+
+  <!-- CSS files are loaded here -->
+  <link rel="stylesheet" href="./styles/shared/general.css">
+
+  <!-- Remix Icons for icons -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet"/>
+</head>
+
+<body>
+  <section class="loader-section">
+    <div class="loader-icon-wrapper">
+      <div class="loader">
+        <img src="images/logo/icon.svg" alt="Orbit Icon">
+        <svg viewBox="0 0 80 80">
+            <circle id="test" cx="40" cy="40" r="32"></circle>
+        </svg>
+      </div>
+    </div>
+    <div class="loader-logo">
+      <img src="images/logo/Orbit.svg" alt="Orbit Logo">
+      <p>Launching into orbit . . .</p>
+    </div>
+  </section>
+
+  <main>
+
+  </main>
+
+  <script src="./scripts/utils/preLoader.js"></script>
+</body>
+</html>
