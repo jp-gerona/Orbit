@@ -191,3 +191,15 @@ main .container .left {
   right: 0.4rem;
 }
 
+.right .trending-card {
+  background-color: var(--card);
+  border-radius: var(--card-border-radius);
+  padding: var(--card-padding);
+}
+
+.right .suggest-follows-card {
+  background-color: var(--card);
+  border-radius: var(--card-border-radius);
+  padding: var(--card-padding);
+  margin-top: 0.9rem;
+}
