@@ -83,7 +83,27 @@
       </div>
 
       <div class="middle">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, ipsum reiciendis exercitationem ut placeat delectus optio nihil itaque molestias aliquid esse sed doloribus laborum quae. Accusamus, culpa. Nesciunt, reprehenderit iusto?
+        <form id="JS-createPost" class="post-card" autocomplete="off">
+
+            <div class="profile-photo">
+              <img src="./images/profile-photo.png" alt="Profile Photo">
+            </div>
+            <div class="post-container">
+              <textarea 
+                required
+                maxlength="200"
+                placeholder="What's on your mind?" 
+                id="writePost" 
+              ></textarea>
+              <hr>
+              <div class="button-container">
+                <button type="submit" value="Post" class="btn primary-btn link-2">
+                  Post <i class="ri-arrow-right-line"></i>
+                </button>
+              </div>
+            </div>
+           
+        </form>
       </div>
 
       <div class="right">
@@ -92,6 +112,7 @@
     </div>
   </main>
 
+  <script src="scripts/home.js"></script>
   <script src="scripts/utils/preLoader.js"></script> 
 </body>
 </html>
