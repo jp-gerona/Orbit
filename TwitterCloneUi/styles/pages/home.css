@@ -10,7 +10,7 @@ main {
   /* *Container */
 main .container {
   display: grid;
-  grid-template-columns: 30vh auto 20vw;
+  grid-template-columns: 230px auto 20vw;
   column-gap: 1.2rem;
 }
 
