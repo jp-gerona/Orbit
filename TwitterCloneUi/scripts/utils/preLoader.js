@@ -2,10 +2,11 @@ const loader = document.querySelector('.loader-section');
 const loaderIconWrapper = document.querySelector('.loader-icon-wrapper');
 const loaderLogo = document.querySelector('.loader-logo');
 
+history.scrollRestoration = "manual";
+
 function removeLoader() {
   loader.remove(); 
 }
-
 function handleAnimationEnd() {
   removeLoader();
 }

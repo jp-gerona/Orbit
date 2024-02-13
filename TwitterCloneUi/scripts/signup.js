@@ -114,7 +114,6 @@ const handlePostCreateUserResult = async (formElement, result) => {
   const usernamePlaceholder = usernameTextField.querySelector('.placeholder');
   const usernameHelper = usernameTextField.querySelector('.helper');
 
-  // todo I dont know how to make this persist because it gets overidden by the validateSingleFormGroup.
   if (!result) {
     usernameHelper.textContent = `${usernamePlaceholder.textContent} already exists.`;
     usernameTextField.classList.add('error');
@@ -134,7 +133,6 @@ const sendtoAPI =  async (formElement) => {
       await handlePostCreateUserResult(formElement, result);
     } catch (error) {
       console.error('Error occurred while creating user:', error);
-      // Handle error if necessary
     }
 }
 

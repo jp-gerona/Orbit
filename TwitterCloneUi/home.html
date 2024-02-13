@@ -116,7 +116,7 @@
 
                <!-- todo FetchAPI to POST User's Text -->
               <div class="button-container">
-                <button type="submit" value="Post" class="btn primary-btn link-2">
+                <button type="submit" value="Post" id="postButton" class="btn primary-btn link-2">
                   Post <i class="ri-arrow-right-line"></i>
                 </button>
               </div>
@@ -146,9 +146,12 @@
               </div>
   
               <!-- todo FetchAPI PATCH like/unlike goes here -->
-              <div class="like-button">
-                <i class="ri-heart-line"></i>
-                Like Post
+              <div class="like-btn">
+                <input type="checkbox" />
+                <div class="like-btn-content">
+                  <i class="ri-heart-line"></i>
+                  <label>Like Post</label>
+                </div>
               </div>
 
             </div>        
@@ -169,12 +172,15 @@
               </div>
 
               <div class="post-content">
-                BRO DID U SEE DRAKE'S MEAT? GADDAMN! <span class="highlight">#ISHOWMEAT</span>
+                BRO DID U SEE DRAKE'S MEAT? GADDAMN! <span class="hashtag">#ISHOWMEAT</span>
               </div>
   
-              <div class="like-button">
-                <i class="ri-heart-line"></i>
-                Like Post
+              <div class="like-btn">
+                <input type="checkbox" />
+                <div class="like-btn-content">
+                  <i class="ri-heart-line"></i>
+                  <label>Like Post</label>
+                </div>
               </div>
 
             </div>        
@@ -198,9 +204,12 @@
                 Extension po pls
               </div>
   
-              <div class="like-button highlight">
-                <i class="ri-heart-fill"></i>
-                Unlike Post
+              <div class="like-btn">
+                <input type="checkbox" />
+                <div class="like-btn-content">
+                  <i class="ri-heart-line"></i>
+                  <label>Like Post</label>
+                </div>
               </div>
 
             </div>        
@@ -224,9 +233,12 @@
                 Extension po pls
               </div>
   
-              <div class="like-button highlight">
-                <i class="ri-heart-fill"></i>
-                Unlike Post
+              <div class="like-btn">  
+                <input type="checkbox" id="likeToggle"/>      
+                <div class="like-btn-content">
+                  <i class="ri-heart-line"></i>
+                  <label for="likeToggle"></label>
+                </div>
               </div>
 
             </div>        
@@ -257,7 +269,7 @@
 
   </main>
 
-  <script src="scripts/home.js"></script>
+  <script type="module" src="scripts/home.js"></script>
   <script src="scripts/utils/preLoader.js"></script> 
 </body>
 </html>
