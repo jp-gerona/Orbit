@@ -11,7 +11,7 @@ textarea.addEventListener('input', function() {
 
 const updateCharCount = () => {
   const remainingChars = 300 - textarea.value.length;
-  charCount.innerHTML = remainingChars > 0 ? `${remainingChars} / 300 Characters <i class="ri-quill-pen-line"></i>` : '';
+  charCount.innerHTML = remainingChars > 0 ? `${remainingChars} / 300 characters <i class="ri-quill-pen-line"></i>` : '';
 };
 
 textarea.addEventListener('input', updateCharCount);

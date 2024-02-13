@@ -4,25 +4,27 @@
 /* *Website Colors and Variables Set-up */
 :root {
   /* ?Color Palette */
+  --gradient-background: linear-gradient(180deg, hsla(0, 0%, 0%, 1) 35%, hsla(0, 0%, 0%, 0.5) 80%, hsla(0, 0%, 0%, 0));
+  --gradient: linear-gradient(90deg, 	hsl(18, 91%, 60%), hsl(299, 63%, 52%));
+  --primary: 	hsl(233, 96%, 65%);
+  --heart:	hsl(331, 100%, 50%);
+
+  /* ?Text and Background Variables */
   --black: #000;
   --gray-600: #666;
   --white-100: hsla(0,0%,100%,0.1);
   --white-200: hsla(0,0%,100%,0.2);
   --white-300: hsla(0,0%,100%,0.333);
   --white-500: hsla(0,0%,100%,0.5);
+  --white-700: hsla(0,0%,100%,0.72);
   --white-800: hsla(0,0%,100%,0.82);
   --white: #fff;
 
-  --gradient-background: linear-gradient(180deg, hsla(0, 0%, 0%, 1) 35%, hsla(0, 0%, 0%, 0.5) 80%, hsla(0, 0%, 0%, 0));
-  --gradient: linear-gradient(90deg, 	hsl(18, 91%, 60%), hsl(299, 63%, 52%));
-  --primary: 	hsl(233, 96%, 65%);
-  --heart:	hsl(331, 100%, 50%);
-
-  /* ?Element Variables */
   --background: var(--black);
   --title: var(--white);
   --text: var(--white-800);
   --muted: var(--white-500);
+  --like: var(--)
   --link: var(--white);
   --link-hover: var(--white-800);
 
@@ -68,7 +70,7 @@ h2 {font-size: 3.158rem;}
 
 h3 {font-size: 2.369rem;}
 
-h4 {font-size: 1.666rem;}
+h4 {font-size: 1.555rem;}
 
 h5 {font-size: 1.222rem;}
 
@@ -170,7 +172,7 @@ hr {
   color: var(--error);
 }
 
-.hashtag {
+.primary {
   color: var(--primary);
 }
 
