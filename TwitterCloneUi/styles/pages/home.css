@@ -141,6 +141,7 @@ main .container .left {
   border: none;
   width: 100%;
   padding-top: 1rem;
+  padding-bottom: 0.5rem;
   resize: none;
   color: var(--text);
   background-color: var(--card);
@@ -150,7 +151,12 @@ main .container .left {
 
 .middle .post-card .post-container .button-container {
   display: flex;
-  justify-content: end;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.middle .post-card .post-container .button-container .char-count {
+  color: var(--muted);
 }
 
   /* *Posts-Feed */

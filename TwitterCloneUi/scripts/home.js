@@ -1,11 +1,27 @@
 import likePost from './utils/likeUtils.js';
 
 const textarea = document.getElementById('writePost');
+const charCount = document.querySelector('.char-count');
+postButton.disabled = true;
 
 textarea.addEventListener('input', function() {
   this.style.height = 'auto';
   this.style.height = this.scrollHeight + 'px';
 });
+
+const updateCharCount = () => {
+  const remainingChars = 300 - textarea.value.length;
+  charCount.innerHTML = remainingChars > 0 ? `${remainingChars} / 300 Characters <i class="ri-quill-pen-line"></i>` : '';
+};
+
+textarea.addEventListener('input', updateCharCount);
+textarea.addEventListener('focus', updateCharCount);
+textarea.addEventListener('blur', function() {
+  if (this.value.trim() === '') {
+      charCount.textContent = '';
+  }
+});
+
 
 const validateForm = (formSelector, callback) => {
   const formElement = document.querySelector(formSelector);
