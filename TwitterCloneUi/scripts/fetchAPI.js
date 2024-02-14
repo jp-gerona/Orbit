@@ -1,3 +1,5 @@
+import likePost from './utils/likeUtils.js';
+
 export async function postCreateUser(formObject) {
     let username = formObject.username;
     let password = formObject.password;
@@ -127,6 +129,7 @@ export let sendToken = {
   
         // Append the new post element at the beginning of the posts-feed container
         postsFeedContainer.prepend(postCard);
+        likePost('.feed-card .like-btn');
       });
   
     } catch (error) {
@@ -147,7 +150,7 @@ export let sendToken = {
       <div class="post-container">
         <div class="user">
           <h5>${username} <span class="handle muted">@OrbitUser</span></h5>
-          <p class="muted">${timestamp}</p>
+          <p class="primary">${timestamp}</p>
         </div>
         <div class="post-content">${postText}</div>
         <div class="like-btn">
@@ -166,4 +169,106 @@ export let sendToken = {
     return postDiv;
   };
   
+  export async function fetchUserList() {
+    let token = localStorage.getItem("token");
+    const res = await fetch("http://localhost:3000/api/v1/users", {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+    })
+    if(res.ok){
+      const userList = await res.json();
+      displayUserList(userList)
+    }
+  }
   
+  async function displayUserList(users) {
+    let token = localStorage.getItem("token");
+    const followDiv = document.querySelector('.suggest-follows-card');
+  
+    const res = await fetch('http://localhost:3000/api/v1/posts', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      }
+    });
+    const data = await res.json();
+    
+    
+    // Type Errors on new User! reason: no posts
+    const userName = data[0].postedBy;
+  
+    users.forEach(user => {
+      if (user !== userName) {
+        const listItem = document.createElement("li");
+        listItem.textContent = user;
+  
+        const followButton = document.createElement("button");
+        followButton.textContent = "Follow";
+        followButton.classList.add("follow-btn");
+        followButton.setAttribute("data-username", user);
+  
+        listItem.appendChild(followButton);
+        followDiv.appendChild(listItem);
+        
+        followButton.addEventListener('click', function () {
+          const usernameToFollow = this.getAttribute('data-username');
+          // Persistency Check here
+          // if (usernameToFollow in followingList) {
+          //   console.log(`Unfollow button clicked for ${usernameToFollow} by ${userName}`);
+          //   unfollowUser(userName,usernameToFollow);
+          //   followButton.getAttribute = "Follow";
+          // }
+          if (followButton.innerText === "Follow") {
+            console.log(`Follow button clicked for ${usernameToFollow} by ${userName}`);
+            followUser(userName,usernameToFollow);
+            followButton.innerText = "Unfollow";
+          } else {
+            console.log(`Unfollow button clicked for ${usernameToFollow} by ${userName}`);
+            unfollowUser(userName,usernameToFollow);
+            followButton.innerText = "Follow";
+          }
+        });
+      } else {
+        console.log("username was segregated!")
+      }
+    });
+  }
+  
+  async function followUser(user,following) { 
+    let token = localStorage.getItem("token");
+    const res = await fetch("http://localhost:3000/api/v1/users/"+user+"/following/"+following, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+    })
+  }
+  
+  async function unfollowUser(user,following) { 
+    let token = localStorage.getItem("token");
+    const res = await fetch("http://localhost:3000/api/v1/users/"+user+"/following/"+following, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+    })
+  }
+  
+  async function followCheck(user) {
+    let token = localStorage.getItem("token");
+    const res = await fetch("http://localhost:3000/api/v1/users/"+user+"/following/", {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+    })
+    let followingList = [];
+    const data = await res.json();
+  }

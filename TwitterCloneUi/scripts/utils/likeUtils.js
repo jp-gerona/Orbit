@@ -8,14 +8,22 @@ export default function likePost(likeBtnSelector) {
 
     checkbox.addEventListener('change', function() {
       if (this.checked) {
+        likeBtn.classList.add('like-effect');
+
         heartIcon.classList.remove('ri-heart-line');
         heartIcon.classList.add('ri-heart-fill');
         label.textContent = 'Unlike Post';
       } else {
+        likeBtn.classList.add('like-effect');
+
         heartIcon.classList.remove('ri-heart-fill');
         heartIcon.classList.add('ri-heart-line');
         label.textContent = 'Like Post';
       }
+    });
+
+    likeBtn.addEventListener('animationend', function() {
+      likeBtn.classList.remove('like-effect');
     });
   });
 }
