@@ -1,4 +1,3 @@
-import likePost from './utils/likeUtils.js';
 import { postCreatePost, getPosts } from './fetchAPI.js';
 
 const textarea = document.getElementById('writePost');
@@ -41,6 +40,8 @@ const validateForm = (formSelector, callback) => {
   formElement.addEventListener('submit', event => {
     event.preventDefault();
     const textarea = formElement.querySelector('#writePost');
+    charCount.textContent = '';
+    postButton.disabled = true;
 
     if (textarea.value.trim()) {
       callback(formElement, event);
@@ -66,4 +67,3 @@ const sendtoAPI = async (formElement, event) => {
 
 document.addEventListener("DOMContentLoaded", getPosts);
 validateForm('#JS-createPost', sendtoAPI);
-likePost('.like-btn');

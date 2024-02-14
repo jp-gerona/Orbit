@@ -1,3 +1,5 @@
+import likePost from './utils/likeUtils.js';
+
 export async function postCreateUser(formObject) {
     let username = formObject.username;
     let password = formObject.password;
@@ -123,6 +125,7 @@ export async function postCreateUser(formObject) {
   
         // Append the new post element at the beginning of the posts-feed container
         postsFeedContainer.prepend(postCard);
+        likePost('.feed-card .like-btn');
       });
   
     } catch (error) {
