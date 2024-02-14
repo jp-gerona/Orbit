@@ -1,4 +1,5 @@
 import { postCreatePost, getPosts, fetchUserList } from './fetchAPI.js';
+import followUser from './utils/followUtils.js';
 
 const textarea = document.getElementById('writePost');
 const charCount = document.querySelector('.char-count');
@@ -67,4 +68,5 @@ const sendtoAPI = async (formElement, event) => {
 
 document.addEventListener("DOMContentLoaded", getPosts);
 validateForm('#JS-createPost', sendtoAPI);
+followUser('.follow-btn');
 fetchUserList(); //fetch Users upon load
