@@ -1,4 +1,4 @@
-import { postCreatePost, getPosts } from './fetchAPI.js';
+import { postCreatePost, getPosts, fetchUserList } from './fetchAPI.js';
 
 const textarea = document.getElementById('writePost');
 const charCount = document.querySelector('.char-count');
@@ -67,3 +67,4 @@ const sendtoAPI = async (formElement, event) => {
 
 document.addEventListener("DOMContentLoaded", getPosts);
 validateForm('#JS-createPost', sendtoAPI);
+fetchUserList(); //fetch Users upon load
