@@ -156,6 +156,8 @@ main .container .left {
   /* *Posts-Feed */
 .middle .posts-feed .feed-card {
   position: relative;
+  display: flex;
+  flex-direction: column;
   background-color: var(--card);
   border-radius: var(--card-border-radius);
   padding: var(--card-padding);
