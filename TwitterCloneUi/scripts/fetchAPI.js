@@ -41,6 +41,7 @@ export async function postCreateUser(formObject) {
         const userToken = await res.text();
         console.log(`User token: ${userToken}`);
         localStorage.setItem("token", userToken)
+        localStorage.setItem("user", username)
         console.log(localStorage)
         window.location.replace("home.html");
     } else {
@@ -51,6 +52,10 @@ export async function postCreateUser(formObject) {
 export let sendToken = {
   token: localStorage.getItem("token")
 };
+
+export let getCurrentUser = {
+  username: localStorage.getItem("user")
+}
 
   export async function postCreatePost() {
     var post = document.getElementById("writePost").value;

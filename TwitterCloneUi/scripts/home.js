@@ -1,5 +1,4 @@
-import { postCreatePost, getPosts, fetchUserList } from './fetchAPI.js';
-import { sendToken } from './fetchAPI.js';
+import { postCreatePost, getPosts, fetchUserList, sendToken, getCurrentUser } from './fetchAPI.js';
 
 const textarea = document.getElementById('writePost');
 const charCount = document.querySelector('.char-count');
@@ -75,7 +74,23 @@ const sendtoAPI = async (formElement, event) => {
   }
 }
 
-validateToken()
+const userLogout = () => {
+  let logoutButton = document.querySelector('.menu-item[href="./index.html"]')
+
+  logoutButton.addEventListener('click', event =>  {
+    localStorage.clear();
+  })
+}
+
+export let displayCurrentUser = () => {
+  let username = getCurrentUser.username;
+  let usernameHolder = document.getElementById('username');
+  usernameHolder.innerText = username;
+}
+
+validateToken();
+displayCurrentUser();
 document.addEventListener("DOMContentLoaded", getPosts);
 validateForm('#JS-createPost', sendtoAPI);
 fetchUserList(); //fetch Users upon load
+userLogout();
