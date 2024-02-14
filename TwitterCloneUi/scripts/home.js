@@ -1,9 +1,19 @@
 import { postCreatePost, getPosts, fetchUserList } from './fetchAPI.js';
 import followUser from './utils/followUtils.js';
+import { postCreatePost, getPosts, fetchUserList, sendToken, getCurrentUser } from './fetchAPI.js';
 
 const textarea = document.getElementById('writePost');
 const charCount = document.querySelector('.char-count');
 postButton.disabled = true;
+
+const validateToken = () => {
+  console.log(sendToken);
+  if(sendToken.token === "" ||  sendToken.token === null) {
+    window.location.replace("index.html")
+  } else {
+    console.log('There is a token');
+  }
+}
 
 textarea.addEventListener('input', function() {
   this.style.height = 'auto';
@@ -66,7 +76,24 @@ const sendtoAPI = async (formElement, event) => {
   }
 }
 
+const userLogout = () => {
+  let logoutButton = document.querySelector('.menu-item[href="./index.html"]')
+
+  logoutButton.addEventListener('click', event =>  {
+    localStorage.clear();
+  })
+}
+
+export let displayCurrentUser = () => {
+  let username = getCurrentUser.username;
+  let usernameHolder = document.getElementById('username');
+  usernameHolder.innerText = username;
+}
+
+validateToken();
+displayCurrentUser();
 document.addEventListener("DOMContentLoaded", getPosts);
 validateForm('#JS-createPost', sendtoAPI);
 followUser('.follow-btn');
 fetchUserList(); //fetch Users upon load
+userLogout();
