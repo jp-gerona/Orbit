@@ -1,6 +1,5 @@
-import { postCreatePost, getPosts, fetchUserList } from './fetchAPI.js';
-import followUser from './utils/followUtils.js';
 import { postCreatePost, getPosts, fetchUserList, sendToken, getCurrentUser } from './fetchAPI.js';
+import followUser from './utils/followUtils.js';
 
 const textarea = document.getElementById('writePost');
 const charCount = document.querySelector('.char-count');
