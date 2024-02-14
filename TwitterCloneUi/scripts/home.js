@@ -1,4 +1,5 @@
 import { postCreatePost, getPosts, fetchUserList } from './fetchAPI.js';
+import { sendToken } from './fetchAPI.js';
 
 const textarea = document.getElementById('writePost');
 const charCount = document.querySelector('.char-count');
