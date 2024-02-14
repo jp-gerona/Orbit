@@ -1,9 +1,19 @@
 import likePost from './utils/likeUtils.js';
 import { postCreatePost, getPosts } from './fetchAPI.js';
+import { sendToken } from './fetchAPI.js';
 
 const textarea = document.getElementById('writePost');
 const charCount = document.querySelector('.char-count');
 postButton.disabled = true;
+
+const validateToken = () => {
+  console.log(sendToken);
+  if(sendToken.token === "" ||  sendToken.token === null) {
+    window.location.replace("index.html")
+  } else {
+    console.log('There is a token');
+  }
+}
 
 textarea.addEventListener('input', function() {
   this.style.height = 'auto';
@@ -64,6 +74,7 @@ const sendtoAPI = async (formElement, event) => {
   }
 }
 
+validateToken()
 document.addEventListener("DOMContentLoaded", getPosts);
 validateForm('#JS-createPost', sendtoAPI);
 likePost('.like-btn');

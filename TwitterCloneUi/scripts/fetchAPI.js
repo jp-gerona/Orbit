@@ -18,8 +18,8 @@ export async function postCreateUser(formObject) {
     } else {
         return false;
     }
-  }
-  
+}
+
   export async function postLogIn() {
     var username = document.getElementById('username').value;
     var password = document.getElementById('password').value;
@@ -45,6 +45,10 @@ export async function postCreateUser(formObject) {
         console.log('login fails')
     }
   }
+
+export let sendToken = {
+  token: localStorage.getItem("token")
+};
 
   export async function postCreatePost() {
     var post = document.getElementById("writePost").value;
