@@ -146,7 +146,7 @@ export async function postCreateUser(formObject) {
       <div class="post-container">
         <div class="user">
           <h5>${username} <span class="handle muted">@OrbitUser</span></h5>
-          <p class="muted">${timestamp}</p>
+          <p class="primary">${timestamp}</p>
         </div>
         <div class="post-content">${postText}</div>
         <div class="like-btn">
