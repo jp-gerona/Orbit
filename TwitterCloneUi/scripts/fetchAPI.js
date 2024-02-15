@@ -1,4 +1,5 @@
 import likePost from './utils/likeUtils.js';
+import followUserAnim from './utils/followUtils.js';
 
 export async function postCreateUser(formObject) {
     let username = formObject.username;
@@ -130,7 +131,7 @@ export let getCurrentUser = {
       // Loop through each post data
       data.forEach(post => {
         // Create a new post element
-        const postCard = createPostElement(post.postedBy, post.content, post.timestamp);
+        const postCard = createPostElement(post.postedBy, post.content, post.dateTimePosted);
   
         // Append the new post element at the beginning of the posts-feed container
         postsFeedContainer.prepend(postCard);
@@ -146,7 +147,8 @@ export let getCurrentUser = {
   const createPostElement = (username, postText, timestamp) => {
     const postDiv = document.createElement("div");
     postDiv.className = "feed-card";
-    
+    const timestr = `${timestamp}`;
+    const formattimestr = timestr.slice(0,10);
   
     postDiv.innerHTML = `
       <div class="profile-photo">
@@ -154,8 +156,8 @@ export let getCurrentUser = {
       </div>
       <div class="post-container">
         <div class="user">
-          <h5>${username} <span class="handle muted">@OrbitUser</span></h5>
-          <p class="primary">${timestamp}</p>
+          <h5>${username} <span class="handle muted">@${username}</span></h5>
+          <p class="primary">${formattimestr}</p>
         </div>
         <div class="post-content">${postText}</div>
         <div class="like-btn">
@@ -202,6 +204,8 @@ export let getCurrentUser = {
             if (checkbox) {
               checkbox.checked = true;
               console.log(u, "is checked");
+              checkbox.nextElementSibling.querySelector('label').textContent = 'Unfollow';
+              
             }
           }
         }
@@ -229,7 +233,8 @@ export let getCurrentUser = {
         </div>        
       </div>`
 
-        followDiv.appendChild(userSuggestion);
+        followDiv.appendChild(userSuggestion)
+        followUserAnim('.follow-container .follow-btn');
 
         const followButton = document.querySelector('[data-username='+user+']')
         followButton.addEventListener('click', function () {
@@ -238,10 +243,13 @@ export let getCurrentUser = {
           if (followButton.checked) {
             console.log(`Followed ${usernameToFollow} by ${userName}`);
             followUser(userName,usernameToFollow);
+            window.location.reload();
+            
           } else {
             console.log(`Unfollowed ${usernameToFollow} by ${userName}`);
             unfollowUser(userName,usernameToFollow);
-
+            window.location.reload();
+            
           }
         });
       }

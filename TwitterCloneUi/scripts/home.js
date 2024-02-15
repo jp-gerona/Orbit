@@ -87,6 +87,8 @@ export let displayCurrentUser = () => {
   let username = getCurrentUser.username;
   let usernameHolder = document.getElementById('username');
   usernameHolder.innerText = username;
+  let handlenameHolder = document.getElementById('handlebar');
+  handlenameHolder.innerText = `@${username}`;
 }
 
 validateToken();
