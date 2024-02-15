@@ -262,9 +262,15 @@ export async function likePostAPI(postId, isChecked) {
         for (let u of followerList) {
           if (user === u) {
             const checkbox = document.querySelector(`[data-username="${u}"]`);
+            const followState = checkbox.closest('.btn')
+            const followLabel = checkbox.nextElementSibling.querySelector('label');
+
             if (checkbox) {
               checkbox.checked = true;
               console.log(u, "is checked");
+              followState.classList.add('default-btn')
+              followState.classList.remove('primary-btn')
+              followLabel.innerText = "Unfollow"
             }
           }
         }
@@ -294,16 +300,24 @@ export async function likePostAPI(postId, isChecked) {
         followDiv.appendChild(userSuggestion);
 
         const followButton = document.querySelector('[data-username='+user+']')
+
         followButton.addEventListener('click', function () {
           const usernameToFollow = this.getAttribute('data-username');
+          const followState = followButton.closest('.btn');
+          const followLabel = this.nextElementSibling.querySelector('label');
 
           if (followButton.checked) {
             console.log(`Followed ${usernameToFollow} by ${userName}`);
             followUser(userName,usernameToFollow);
+            followState.classList.add('default-btn');
+            followState.classList.remove('primary-btn');
+            followLabel.innerText = "Unfollow"
           } else {
             console.log(`Unfollowed ${usernameToFollow} by ${userName}`);
             unfollowUser(userName,usernameToFollow);
-
+            followState.classList.remove('default-btn');
+            followState.classList.add('primary-btn');
+            followLabel.innerText = "Follow"
           }
         });
       }
