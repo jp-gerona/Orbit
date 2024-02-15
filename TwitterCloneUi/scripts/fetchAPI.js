@@ -199,7 +199,7 @@ const createPostElement = (username, postId, postText, timestamp) => {
       </div>
       <div class="post-content">${hPostText}</div>
       <div class="like-btn">
-        <input type="checkbox" class='likeButton' id='${postId}/>
+        <input type="checkbox" class='likeButton' id='${postId}'/>
         <div class="like-btn-content">
           <i class="ri-heart-line"></i>
           <label>Like Post</label>
