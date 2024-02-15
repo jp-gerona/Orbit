@@ -13,6 +13,12 @@ const validateToken = () => {
   }
 }
 
+let displayCurrentUser = () => {
+  let username = getCurrentUser.username;
+  let usernameHolder = document.getElementById('username');
+  usernameHolder.innerText = username;
+}
+
 textarea.addEventListener('input', function() {
   this.style.height = 'auto';
   this.style.height = this.scrollHeight + 'px';
@@ -80,12 +86,6 @@ const userLogout = () => {
   logoutButton.addEventListener('click', event =>  {
     localStorage.clear();
   })
-}
-
-export let displayCurrentUser = () => {
-  let username = getCurrentUser.username;
-  let usernameHolder = document.getElementById('username');
-  usernameHolder.innerText = username;
 }
 
 validateToken();
