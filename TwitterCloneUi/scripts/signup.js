@@ -18,6 +18,11 @@ const validateForm = (formSelector, callback) => {
    */
   const validationOptions = [
     {
+      attribute: 'maxlength',
+      isValid: input => input.value.length <= 15,
+      errorMessage: (input, placeholder) => `${placeholder.textContent} cannot exceed 15 characters.`
+    },
+    {
       attribute: 'minlength',
       isValid: input => input.value && input.value.length >= parseInt(input.minLength, 10),
       errorMessage: (input, placeholder) => `${placeholder.textContent} must be at least ${input.minLength} characters.`
@@ -60,18 +65,21 @@ const validateForm = (formSelector, callback) => {
     for (const option of validationOptions) {
       if (input.hasAttribute(option.attribute) && !option.isValid(input)) {
         helper.textContent = option.errorMessage(input, placeholder);
+        helper.classList.add('shake');
         textField.classList.add('error');
-        textField.classList.remove('success');
         formGroupError = true;
       }
     }
 
     if (!formGroupError) {
       helper.textContent = '';
-      textField.classList.add('success');
       textField.classList.remove('error');
     }
 
+    textField.addEventListener('animationend', function() {
+      helper.classList.remove('shake');
+    });
+    
     return !formGroupError;
   };
 
@@ -114,11 +122,9 @@ const handlePostCreateUserResult = async (formElement, result) => {
   const usernamePlaceholder = usernameTextField.querySelector('.placeholder');
   const usernameHelper = usernameTextField.querySelector('.helper');
 
-  // todo I dont know how to make this persist because it gets overidden by the validateSingleFormGroup.
   if (!result) {
     usernameHelper.textContent = `${usernamePlaceholder.textContent} already exists.`;
     usernameTextField.classList.add('error');
-    usernameTextField.classList.remove('success');
   }
 };
 
