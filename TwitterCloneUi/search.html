@@ -70,14 +70,14 @@
 
         <!-- * Left Side Bar Card -->
         <div class="sidebar-card">
-          <a class="menu-item " href="./home.html">
+          <a class="menu-item" href="./home.html">
             <span><i class="ri-home-2-line"></i></span><p>Home</p>
           </a>
-          <a class="menu-item" href="./search.html">
-            <span><i class="ri-search-line"></i></i></span><p>Explore</p>
+          <a class="menu-item active" href="./search.html">
+            <span><i class="ri-search-fill"></i></i></span><p>Explore</p>
           </a>
-          <a class="menu-item active" href="./profile.html">
-            <span><i class="ri-user-smile-fill"></i></span><p>Profile</p>
+          <a class="menu-item" href="./profile.html">
+            <span><i class="ri-user-smile-line"></i></span><p>Profile</p>
           </a>
           <a class="menu-item">
             <span><i class="ri-mail-line"></i></span><p>Messages</p>
@@ -97,32 +97,6 @@
 
       <!-- * Start of Middle Side Content -->
       <div class="middle">
-        
-        <div class="main-profile-card">
-          <div class="cover-container">
-            <img class="cover-photo" src="./images/background/cover-photo.webp" alt="Cover Photo">
-            <div class="profile-photo">
-              <img src="./images/profile-photo-1.png" alt="Profile Photo">
-            </div>
-          </div>
-          <div class="profile-container">
-            <div class="handle">
-              <h5 id="usernameProfile">Orbit User</h5> 
-              <p id="@usernameProfile" class="muted">@OrbitUser</p> 
-            </div> 
-            <div class="status">
-              New user here, Just finally launched into Orbit! &#x1F680; <br /> Cover Photo art by <span class="primary">@Kurzgesagt</span>
-            </div>
-            <div class="follow-count-container">
-              <div class="following-count">
-                69 <span class="muted">Following</span>
-              </div>
-              <div class="followers-count">
-                47 <span class="muted">Followers</span>
-              </div>
-            </div>
-          </div>
-        </div>
 
          <!-- * User Create Post Text Field Card -->
         <form id="JS-createPost" class="post-card" autocomplete="off">
@@ -138,9 +112,9 @@
                 placeholder="What's on your mind?" 
                 id="writePost" 
               ></textarea>
-
               <hr>
 
+               <!-- todo FetchAPI to POST User's Text -->
               <div class="button-container">
                 <div class="char-count"></div>
                 <button type="submit" value="Post" id="postButton" class="btn primary-btn link-2">
@@ -162,13 +136,52 @@
       <!-- * Start of Right Side Content -->
       <div class="right">
         
-        <div class="trending-card">
-          <h4>Trending now</h4>
+        <div id="trending-card" class="trending-card">
+          <h4>Trending now</h4><br/>
         </div>
 
         <!-- * Who to follow Card -->
         <div class="suggest-follows-card">
           <h4>Who to follow</h4>
+
+          <!-- ?Sample Follow list -->
+          <!-- <div class="follow-container">
+            <div class="profile-container">
+              <div class="profile-photo">
+                <img src="./images/profile-photo-2.png" alt="Profile Photo">
+              </div>
+              <div class="handle">
+                <h5>Lebron James</h5> 
+                <p class="muted">@lebron james</p> 
+              </div>
+            </div>
+
+            <div class="btn primary-btn follow-btn">
+              <input type="checkbox" />
+              <div class="follow-btn-content link-1">
+                <label>Follow</label>
+              </div>
+            </div>        
+          </div>
+
+          <div class="follow-container">
+            <div class="profile-container">
+              <div class="profile-photo">
+                <img src="./images/profile-photo-2.png" alt="Profile Photo">
+              </div>
+              <div class="handle">
+                <h5>IshowMeat</h5> 
+                <p class="muted">@IshowMeat</p> 
+              </div>
+            </div>
+
+            <div class="btn default-btn follow-btn">
+              <input type="checkbox" />
+              <div class="follow-btn-content link-1">
+                <label>Unfollow</label>
+              </div>
+            </div>        
+          </div> -->
 
         </div>
 
