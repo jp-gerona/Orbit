@@ -15,6 +15,30 @@ const validateToken = () => {
   }
 }
 
+let displayCurrentUserHome = () => {
+  let username = getCurrentUser.username;
+  let usernameHolder = document.getElementById('username');
+  console.log(usernameHolder + '   ' + username)
+  usernameHolder.innerText = username;
+
+  let smallUsernameHolder = document.getElementById('@username');
+  smallUsernameHolder.innerText = '@'+username.toLowerCase();
+}
+
+let displayCurrentUserProfile = () => {
+  let username = getCurrentUser.username;
+  let usernameprofileHolder = document.getElementById('usernameProfile');
+  let smallUsernameProfileHolder = document.getElementById('@usernameProfile');
+  
+  if (usernameprofileHolder != null && smallUsernameProfileHolder != null) {
+    usernameprofileHolder.innerText = username;
+  smallUsernameProfileHolder.innerText = '@'+username.toLowerCase();
+  } else {
+    console.log("Failure due to being in Homepage")
+  }
+}
+
+
 
 textarea.addEventListener('input', function() {
   this.style.height = 'auto';
@@ -107,7 +131,8 @@ export let displayCurrentUser = () => {
 }
 
 validateToken();
-displayCurrentUser();
+displayCurrentUserHome();
+displayCurrentUserProfile();
 document.addEventListener("DOMContentLoaded", getPosts);
 likeHandler();
 validateForm('#JS-createPost', sendtoAPI);

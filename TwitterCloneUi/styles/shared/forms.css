@@ -70,7 +70,7 @@
 
 /* ?Validation Styles for Text Fields */
 /* *Success */
-.text-field.success input {
+/*.text-field.success input {
   border-color: var(--success);
 }
 
@@ -81,7 +81,7 @@
 .text-field.success input:focus~.placeholder,
 .text-field.success input:valid~.placeholder {
   color: var(--success);
-}
+}*/
 
 /* *Error */
 .text-field.error input {
@@ -95,14 +95,16 @@
 .text-field.error .placeholder {
   color: var(--error);
 }
+.text-field.error .helper {
+  color: var(--error);
+}
+
+.text-field .helper.shake {
+  animation: errorShake 0.3s ease-in-out;
+}
 
 .text-field.error input:focus~.placeholder {
   color: var(--warning);
-}
-
-.text-field.error .helper {
-  color: var(--error);
-  animation: errorShake 0.3s ease-in-out;
 }
 
 .text-field.error input:focus~.helper {
