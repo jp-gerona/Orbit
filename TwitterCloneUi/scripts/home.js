@@ -1,4 +1,5 @@
 import { postCreatePost, getPosts, fetchUserList, sendToken, getCurrentUser } from './fetchAPI.js';
+import followUser from './utils/followUtils.js';
 
 const textarea = document.getElementById('writePost');
 const charCount = document.querySelector('.char-count');
@@ -92,5 +93,6 @@ validateToken();
 displayCurrentUser();
 document.addEventListener("DOMContentLoaded", getPosts);
 validateForm('#JS-createPost', sendtoAPI);
+followUser('.follow-btn');
 fetchUserList(); //fetch Users upon load
 userLogout();
