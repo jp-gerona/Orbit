@@ -273,7 +273,7 @@ export async function likePostAPI(postId, isChecked) {
       if (user !== userName) {
         const userSuggestion = document.createElement("div");
         userSuggestion.className = "follow-container"
-        userSuggestion.innerHTML = `<div class="follow-container">
+        userSuggestion.innerHTML = `
         <div class="profile-container">
           <div class="profile-photo">
             <img src="./images/profile-photo-2.png" alt="Profile Photo">
@@ -289,8 +289,7 @@ export async function likePostAPI(postId, isChecked) {
           <div class="follow-btn-content link-1">
             <label>Follow</label>
           </div>
-        </div>        
-      </div>`
+        </div>`
 
         followDiv.appendChild(userSuggestion);
 
