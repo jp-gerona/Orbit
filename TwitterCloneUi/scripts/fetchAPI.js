@@ -282,15 +282,16 @@ export async function likePostAPI(postId, isChecked) {
           for (let u of followerList) {
             if (user === u) {
               const checkbox = document.querySelector(`[data-username="${u}"]`);
-              const followState = checkbox.closest('.btn');
-              const followLabel = checkbox.nextElementSibling.querySelector('label');
-  
               if (checkbox) {
+                const followState = checkbox.closest('.btn');
+                const followLabel = checkbox.nextElementSibling.querySelector('label');
                 checkbox.checked = true;
                 console.log(u, "is checked");
                 followState.classList.add('default-btn')
                 followState.classList.remove('primary-btn')
                 followLabel.innerText = "Unfollow"
+              } else {
+                console.log("can't see user: ", u)
               }
             }
           }
