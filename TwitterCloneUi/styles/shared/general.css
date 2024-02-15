@@ -7,6 +7,7 @@
   --gradient-background: linear-gradient(180deg, hsla(0, 0%, 0%, 1) 35%, hsla(0, 0%, 0%, 0.5) 80%, hsla(0, 0%, 0%, 0));
   --gradient: linear-gradient(90deg, 	hsl(18, 91%, 60%), hsl(299, 63%, 52%));
   --primary: 	hsl(233, 96%, 65%);
+  --secondary:  hsl(217, 100%, 70%);
   --heart:	hsl(331, 100%, 50%);
 
   /* ?Text and Background Variables */
@@ -174,6 +175,10 @@ hr {
 
 .primary {
   color: var(--primary);
+}
+
+.secondary {
+  color: var(--secondary);
 }
 
 .heart {
