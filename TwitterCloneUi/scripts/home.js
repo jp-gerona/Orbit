@@ -65,7 +65,6 @@ const sendtoAPI = async (formElement, event) => {
 
   try {
     console.log(text);
-    // todo await API here
     postCreatePost(formElement);
     getPosts();
     textarea.value = '';

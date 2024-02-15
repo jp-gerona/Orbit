@@ -46,7 +46,7 @@
 
   <!-- * Main Content Section -->
   <main>
-
+    
     <!-- * Start of Left Side Content -->
     <div class="container">
 
@@ -58,7 +58,7 @@
               <img src="./images/profile-photo-1.png" alt="Profile Photo">
             </div>
             <div class="handle">
-              <h5>Orbit User</h5> 
+              <h5 id="username">Orbit User</h5> 
               <p class="muted">@OrbitUser</p> 
             </div>           
           </div>  
@@ -97,6 +97,10 @@
 
       <!-- * Start of Middle Side Content -->
       <div class="middle">
+        
+        <div class="main-profile-card">
+          
+        </div>
 
          <!-- * User Create Post Text Field Card -->
         <form id="JS-createPost" class="post-card" autocomplete="off">
@@ -127,7 +131,7 @@
 
         <!-- * Posts Feed/Timeline Card -->
         <div class="posts-feed">
-
+            
         </div>
 
       <!-- * End of Middle Side Content -->
@@ -139,9 +143,53 @@
         <div class="trending-card">
           <h4>Trending now</h4>
         </div>
+
+        <!-- * Who to follow Card -->
         <div class="suggest-follows-card">
           <h4>Who to follow</h4>
+
+          <!-- ?Sample Follow list -->
+          <div class="follow-container">
+            <div class="profile-container">
+              <div class="profile-photo">
+                <img src="./images/profile-photo-2.png" alt="Profile Photo">
+              </div>
+              <div class="handle">
+                <h5>Lebron James</h5> 
+                <p class="muted">@lebron james</p> 
+              </div>
+            </div>
+
+            <div class="btn primary-btn follow-btn">
+              <input type="checkbox" />
+              <div class="follow-btn-content link-1">
+                <label>Follow</label>
+              </div>
+            </div>        
+          </div>
+
+          <div class="follow-container">
+            <div class="profile-container">
+              <div class="profile-photo">
+                <img src="./images/profile-photo-2.png" alt="Profile Photo">
+              </div>
+              <div class="handle">
+                <h5>IshowMeat</h5> 
+                <p class="muted">@IshowMeat</p> 
+              </div>
+            </div>
+
+            <div class="btn default-btn follow-btn">
+              <input type="checkbox" />
+              <div class="follow-btn-content link-1">
+                <label>Unfollow</label>
+              </div>
+            </div>        
+          </div>
+
         </div>
+
+        
 
        <!-- * End of Right Side Content -->
       </div>
@@ -149,7 +197,8 @@
     </div>
 
   </main>
-  
+
+  <script type="module" src="scripts/home.js"></script>
   <script src="scripts/utils/preLoader.js"></script> 
 </body>
 </html>

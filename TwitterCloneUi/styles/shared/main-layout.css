@@ -317,3 +317,14 @@ main .container .right {
   height: 100%;
   opacity: 0;
 }
+
+
+
+
+
+.main-profile-card {
+  background-color: var(--card);
+  border-radius: var(--card-border-radius);
+  padding: var(--card-padding);
+  margin-bottom: 0.9rem;
+}
