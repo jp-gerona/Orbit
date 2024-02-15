@@ -117,10 +117,12 @@ export let getCurrentUser = {
         throw new Error('Failed to fetch posts');
       }
   
-      const data = await res.json();
-  
-      console.log(data); // Log the data to check the structure and content
-  
+      const data = await res.json();      
+
+      const postContents = data.map(post => post.content);
+
+      getUserTrends(postContents);
+
       // Select the posts-feed container
       const postsFeedContainer = document.querySelector(".posts-feed");
   
@@ -142,38 +144,76 @@ export let getCurrentUser = {
     }
   }
   
-  // Function to create post element
-  const createPostElement = (username, postText, timestamp) => {
-    const postDiv = document.createElement("div");
-    postDiv.className = "feed-card";
-    
+  async function getUserTrends(userPosts) {
+    const trendCard = document.getElementById('trending-card'); 
+    const hashtagCounts = {};
   
-    postDiv.innerHTML = `
-      <div class="profile-photo">
-        <img src="./images/profile-photo-1.png" alt="Profile Photo">
+    userPosts.forEach(post => {
+      if (SingleWordHashtag(post)) {
+        const hashtags = HashtagsFromPost(post);
+  
+        hashtags.forEach(hashtag => {
+          const normalizedHashtag = hashtag.substring(1);
+  
+          hashtagCounts[normalizedHashtag] = (hashtagCounts[normalizedHashtag] || 0) + 1;
+        });
+      }
+    });
+  
+    Object.keys(hashtagCounts).forEach(hashtag => {
+      const count = hashtagCounts[hashtag];
+      const trendItem = document.createElement("div");
+      trendItem.className = "trend-item";
+      trendItem.textContent = `#${hashtag}`;
+      trendItem.style.color = "hsl(233, 96%, 65%)";
+      trendCard.appendChild(trendItem);
+    });
+  
+    console.log(hashtagCounts);
+  }
+  
+  function HashtagsFromPost(post) {
+    const regex = /#\w+/g;
+    const hashtags = post.match(regex);
+    return hashtags;
+  }
+  
+  function SingleWordHashtag(post) {
+    const regex = /#\w+/g;
+    return regex.test(post);
+  }
+  
+const createPostElement = (username, postText, timestamp) => {
+  const postDiv = document.createElement("div");
+  postDiv.className = "feed-card";
+  const hPostText = postText.replace(/#(\w+)/g, '<span class="primary">#$1</span>');
+
+  postDiv.innerHTML = `
+    <div class="profile-photo">
+      <img src="./images/profile-photo-1.png" alt="Profile Photo">
+    </div>
+    <div class="post-container">
+      <div class="user">
+        <h5>${username} <span class="handle muted">@OrbitUser</span></h5>
+        <p class="primary">${timestamp}</p>
       </div>
-      <div class="post-container">
-        <div class="user">
-          <h5>${username} <span class="handle muted">@OrbitUser</span></h5>
-          <p class="primary">${timestamp}</p>
+      <div class="post-content">${hPostText}</div>
+      <div class="like-btn">
+        <input type="checkbox" />
+        <div class="like-btn-content">
+          <i class="ri-heart-line"></i>
+          <label>Like Post</label>
         </div>
-        <div class="post-content">${postText}</div>
-        <div class="like-btn">
-          <input type="checkbox" />
-          <div class="like-btn-content">
-            <i class="ri-heart-line"></i>
-            <label>Like Post</label>
-          </div>
-        </div>
       </div>
-      <div class="post-logo">
-        <i class="ri-chat-smile-2-line"></i>
-      </div>
-    `;
-  
-    return postDiv;
-  };
-  
+    </div>
+    <div class="post-logo">
+      <i class="ri-chat-smile-2-line"></i>
+    </div>
+  `;
+
+  return postDiv;
+};
+
   export async function fetchUserList() {
     let token = localStorage.getItem("token");
     const res = await fetch("http://localhost:3000/api/v1/users", {
