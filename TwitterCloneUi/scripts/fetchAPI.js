@@ -146,7 +146,7 @@ export let getCurrentUser = {
   }
   
   async function getUserTrends(userPosts) {
-    const trendCard = document.getElementById('trending-card'); 
+    const trendCard = document.getElementById('trending-card');
     const hashtagCounts = {};
   
     userPosts.forEach(post => {
@@ -155,23 +155,31 @@ export let getCurrentUser = {
   
         hashtags.forEach(hashtag => {
           const normalizedHashtag = hashtag.substring(1);
-  
           hashtagCounts[normalizedHashtag] = (hashtagCounts[normalizedHashtag] || 0) + 1;
         });
       }
     });
   
-    Object.keys(hashtagCounts).forEach(hashtag => {
-      const count = hashtagCounts[hashtag];
+    const sortedHashtags = Object.keys(hashtagCounts).sort((a, b) => {
+      const countComparison = hashtagCounts[b] - hashtagCounts[a];
+      if (countComparison === 0) {
+        return a.localeCompare(b);
+      }
+      return countComparison;
+    });
+  
+    sortedHashtags.forEach(hashtag => {
+      //const count = hashtagCounts[hashtag];
       const trendItem = document.createElement("div");
       trendItem.className = "trend-item";
-      trendItem.textContent = `#${hashtag}`;
+      trendItem.textContent = `#${hashtag}`; // add count here?
       trendItem.style.color = "hsl(233, 96%, 65%)";
       trendCard.appendChild(trendItem);
     });
   
     console.log(hashtagCounts);
   }
+
 
   function clearTrends() {
     const trendCard = document.getElementById('trending-card');
