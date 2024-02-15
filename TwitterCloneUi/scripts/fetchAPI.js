@@ -194,7 +194,7 @@ const createPostElement = (username, postId, postText, timestamp) => {
     </div>
     <div class="post-container">
       <div class="user">
-        <h5>${username} <span class="handle muted">@OrbitUser</span></h5>
+        <h5>${username} <span class="handle muted">${'@'+username.toLowerCase()}</span></h5>
         <p class="primary">${timestamp}</p>
       </div>
       <div class="post-content">${hPostText}</div>
