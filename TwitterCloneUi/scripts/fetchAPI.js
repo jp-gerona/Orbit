@@ -120,7 +120,7 @@ export let getCurrentUser = {
       const data = await res.json();      
 
       const postContents = data.map(post => post.content);
-
+      clearTrends();
       getUserTrends(postContents);
 
       // Select the posts-feed container
@@ -170,6 +170,15 @@ export let getCurrentUser = {
     });
   
     console.log(hashtagCounts);
+  }
+
+  function clearTrends() {
+    const trendCard = document.getElementById('trending-card');
+    const trendItems = document.querySelectorAll('.trend-item');
+  
+    trendItems.forEach(item => {
+      trendCard.removeChild(item);
+    });
   }
   
   function HashtagsFromPost(post) {
@@ -248,83 +257,101 @@ export async function likePostAPI(postId, isChecked) {
     })
     if(res.ok){
       const userList = await res.json();
-      displayUserList(userList)
+      const randomizedUserList = shuffleArray(userList);
+      displayUserList(randomizedUserList)
+      //displayUserList(userList) // Non-Randomized - disable shuffleArray function too
     }
   }
-  
+
+  function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  }
+
   async function displayUserList(users) {
     const followDiv = document.querySelector('.suggest-follows-card');
     const userName = getCurrentUser.username;
+    let displayedUsers = 0; 
 
     users.forEach(user => {
       followCheck(userName)
-      .then(followerList => {
-        for (let u of followerList) {
-          if (user === u) {
-            const checkbox = document.querySelector(`[data-username="${u}"]`);
-            const followState = checkbox.closest('.btn')
-            const followLabel = checkbox.nextElementSibling.querySelector('label');
-
-            if (checkbox) {
-              checkbox.checked = true;
-              console.log(u, "is checked");
-              followState.classList.add('default-btn')
-              followState.classList.remove('primary-btn')
-              followLabel.innerText = "Unfollow"
+        .then(followerList => {
+          for (let u of followerList) {
+            if (user === u) {
+              const checkbox = document.querySelector(`[data-username="${u}"]`);
+              if (checkbox) {
+                const followState = checkbox.closest('.btn');
+                const followLabel = checkbox.nextElementSibling.querySelector('label');
+                checkbox.checked = true;
+                console.log(u, "is checked");
+                followState.classList.add('default-btn')
+                followState.classList.remove('primary-btn')
+                followLabel.innerText = "Unfollow"
+              } else {
+                console.log("can't see user: ", u)
+              }
             }
           }
-        }
-      })
-
-      if (user !== userName) {
+        })
+  
+      if (user !== userName && displayedUsers < 3) {
         const userSuggestion = document.createElement("div");
         userSuggestion.className = "follow-container"
         userSuggestion.innerHTML = `
-        <div class="profile-container">
-          <div class="profile-photo">
-            <img src="./images/profile-photo-2.png" alt="Profile Photo">
+          <div class="profile-container">
+            <div class="profile-photo">
+              <img src="./images/profile-photo-2.png" alt="Profile Photo">
+            </div>
+            <div class="handle">
+              <h5>${user}</h5> 
+              <p class="muted">@${user}</p> 
+            </div>
           </div>
-          <div class="handle">
-            <h5>`+user+`</h5> 
-            <p class="muted">@`+user+`</p> 
-          </div>
-        </div>
-
-        <div class="btn primary-btn follow-btn">
-          <input type="checkbox" class="follow-box" data-username="`+user+`"/>
-          <div class="follow-btn-content link-1">
-            <label>Follow</label>
-          </div>
-        </div>`
-
+  
+          <div class="btn primary-btn follow-btn">
+            <input type="checkbox" class="follow-box" data-username="${user}"/>
+            <div class="follow-btn-content link-1">
+              <label>Follow</label>
+            </div>
+          </div>`;
+  
         followDiv.appendChild(userSuggestion);
-
+        displayedUsers++;
+  
         const followButton = document.querySelector('[data-username='+user+']')
-
+  
         followButton.addEventListener('click', function () {
           const usernameToFollow = this.getAttribute('data-username');
           const followState = followButton.closest('.btn');
           const followLabel = this.nextElementSibling.querySelector('label');
-
+  
           if (followButton.checked) {
             console.log(`Followed ${usernameToFollow} by ${userName}`);
-            followUser(userName,usernameToFollow);
+            followUser(userName, usernameToFollow);
             followState.classList.add('default-btn');
             followState.classList.remove('primary-btn');
             followLabel.innerText = "Unfollow"
           } else {
             console.log(`Unfollowed ${usernameToFollow} by ${userName}`);
-            unfollowUser(userName,usernameToFollow);
+            unfollowUser(userName, usernameToFollow);
             followState.classList.remove('default-btn');
             followState.classList.add('primary-btn');
             followLabel.innerText = "Follow"
           }
         });
       }
-
+      
     });
-    
+    const findMore = document.createElement('div')
+    findMore.innerHTML = `<div>
+      <button>Find More</button>
+    </div>`
+    followDiv.appendChild(findMore);
   }
+  
   
   async function followUser(user,following) { 
     let token = localStorage.getItem("token");
