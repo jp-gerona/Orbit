@@ -190,57 +190,64 @@ export let getCurrentUser = {
   }
   
   async function displayUserList(users) {
-    let token = localStorage.getItem("token");
     const followDiv = document.querySelector('.suggest-follows-card');
-  
-    const res = await fetch('http://localhost:3000/api/v1/posts', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
-      }
-    });
-    const data = await res.json();
-    
-    
-    // Type Errors on new User! reason: no posts
-    const userName = data[0].postedBy;
-  
+    const userName = getCurrentUser.username;
+
     users.forEach(user => {
+      followCheck(userName)
+      .then(followerList => {
+        for (let u of followerList) {
+          if (user === u) {
+            const checkbox = document.querySelector(`[data-username="${u}"]`);
+            if (checkbox) {
+              checkbox.checked = true;
+              console.log(u, "is checked");
+            }
+          }
+        }
+      })
+
       if (user !== userName) {
-        const listItem = document.createElement("li");
-        listItem.textContent = user;
-  
-        const followButton = document.createElement("button");
-        followButton.textContent = "Follow";
-        followButton.classList.add("follow-btn");
-        followButton.setAttribute("data-username", user);
-  
-        listItem.appendChild(followButton);
-        followDiv.appendChild(listItem);
-        
+        const userSuggestion = document.createElement("div");
+        userSuggestion.className = "follow-container"
+        userSuggestion.innerHTML = `<div class="follow-container">
+        <div class="profile-container">
+          <div class="profile-photo">
+            <img src="./images/profile-photo-2.png" alt="Profile Photo">
+          </div>
+          <div class="handle">
+            <h5>`+user+`</h5> 
+            <p class="muted">@`+user+`</p> 
+          </div>
+        </div>
+
+        <div class="btn primary-btn follow-btn">
+          <input type="checkbox" class="follow-box" data-username="`+user+`"/>
+          <div class="follow-btn-content link-1">
+            <label>Follow</label>
+          </div>
+        </div>        
+      </div>`
+
+        followDiv.appendChild(userSuggestion);
+
+        const followButton = document.querySelector('[data-username='+user+']')
         followButton.addEventListener('click', function () {
           const usernameToFollow = this.getAttribute('data-username');
-          // Persistency Check here
-          // if (usernameToFollow in followingList) {
-          //   console.log(`Unfollow button clicked for ${usernameToFollow} by ${userName}`);
-          //   unfollowUser(userName,usernameToFollow);
-          //   followButton.getAttribute = "Follow";
-          // }
-          if (followButton.innerText === "Follow") {
-            console.log(`Follow button clicked for ${usernameToFollow} by ${userName}`);
+
+          if (followButton.checked) {
+            console.log(`Followed ${usernameToFollow} by ${userName}`);
             followUser(userName,usernameToFollow);
-            followButton.innerText = "Unfollow";
           } else {
-            console.log(`Unfollow button clicked for ${usernameToFollow} by ${userName}`);
+            console.log(`Unfollowed ${usernameToFollow} by ${userName}`);
             unfollowUser(userName,usernameToFollow);
-            followButton.innerText = "Follow";
+
           }
         });
-      } else {
-        console.log("username was segregated!")
       }
+
     });
+    
   }
   
   async function followUser(user,following) { 
@@ -274,6 +281,6 @@ export let getCurrentUser = {
         'Authorization': `Bearer ${token}`
       },
     })
-    let followingList = [];
-    const data = await res.json();
+    let data = await res.json();
+    return data;
   }
