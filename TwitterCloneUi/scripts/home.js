@@ -1,8 +1,9 @@
-import { postCreatePost, getPosts, fetchUserList, sendToken, getCurrentUser } from './fetchAPI.js';
+import { postCreatePost, getPosts, fetchUserList, sendToken, getCurrentUser, likePostAPI } from './fetchAPI.js';
 import followUser from './utils/followUtils.js';
 
 const textarea = document.getElementById('writePost');
 const charCount = document.querySelector('.char-count');
+
 postButton.disabled = true;
 
 const validateToken = () => {
@@ -80,6 +81,20 @@ const sendtoAPI = async (formElement, event) => {
   }
 }
 
+const likeHandler = () => {
+  const likeButton = document.querySelector('.posts-feed') // Selects the parent element that contains the like button
+  likeButton.addEventListener('change', function(event) {
+  
+  if (event.target.matches('.likeButton')) {
+    
+    const postId = event.target.id;
+    const isChecked = event.target.checked;
+
+    likePostAPI(postId, isChecked);
+  }
+});
+}
+
 const userLogout = () => {
   let logoutButton = document.querySelector('.menu-item[href="./index.html"]')
 
@@ -91,6 +106,7 @@ const userLogout = () => {
 validateToken();
 displayCurrentUser();
 document.addEventListener("DOMContentLoaded", getPosts);
+likeHandler();
 validateForm('#JS-createPost', sendtoAPI);
 followUser('.follow-btn');
 fetchUserList(); //fetch Users upon load

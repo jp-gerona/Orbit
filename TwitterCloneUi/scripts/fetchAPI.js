@@ -130,7 +130,7 @@ export let getCurrentUser = {
       // Loop through each post data
       data.forEach(post => {
         // Create a new post element
-        const postCard = createPostElement(post.postedBy, post.content, post.timestamp);
+        const postCard = createPostElement(post.postedBy, post.postId, post.content, post.timestamp);
   
         // Append the new post element at the beginning of the posts-feed container
         postsFeedContainer.prepend(postCard);
@@ -143,7 +143,7 @@ export let getCurrentUser = {
   }
   
   // Function to create post element
-  const createPostElement = (username, postText, timestamp) => {
+  const createPostElement = (username, postId, postText, timestamp) => {
     const postDiv = document.createElement("div");
     postDiv.className = "feed-card";
     
@@ -159,7 +159,7 @@ export let getCurrentUser = {
         </div>
         <div class="post-content">${postText}</div>
         <div class="like-btn">
-          <input type="checkbox" />
+          <input type="checkbox" class='likeButton' id='${postId}'/>
           <div class="like-btn-content">
             <i class="ri-heart-line"></i>
             <label>Like Post</label>
@@ -174,6 +174,29 @@ export let getCurrentUser = {
     return postDiv;
   };
   
+export async function likePostAPI(postId, isChecked) {
+  let token = localStorage.getItem("token");
+  const likeAction = isChecked ? "like" : "unlike";
+  
+  const res = await fetch(`http://localhost:3000/api/v1/posts/${postId}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify({
+        action: likeAction
+      })
+  })
+  if(res.ok && likeAction === 'like') {
+    console.log("Post Liked")
+  } else if (res.ok && likeAction === 'unlike') {
+    console.log("Post Unliked")
+  }  else {
+    console.log("Post Like Failure")
+  }
+}
+
   export async function fetchUserList() {
     let token = localStorage.getItem("token");
     const res = await fetch("http://localhost:3000/api/v1/users", {
