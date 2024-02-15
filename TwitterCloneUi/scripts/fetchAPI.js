@@ -118,10 +118,12 @@ export let getCurrentUser = {
         throw new Error('Failed to fetch posts');
       }
   
-      const data = await res.json();
-  
-      console.log(data); // Log the data to check the structure and content
-  
+      const data = await res.json();      
+
+      const postContents = data.map(post => post.content);
+
+      getUserTrends(postContents);
+
       // Select the posts-feed container
       const postsFeedContainer = document.querySelector(".posts-feed");
   
@@ -131,7 +133,7 @@ export let getCurrentUser = {
       // Loop through each post data
       data.forEach(post => {
         // Create a new post element
-        const postCard = createPostElement(post.postedBy, post.content, post.dateTimePosted);
+        const postCard = createPostElement(post.postedBy, post.postId, post.content, post.dateTimePosted, post.dateTimePosted, post.dateTimePosted, post.dateTimePosted, post.dateTimePosted);
   
         // Append the new post element at the beginning of the posts-feed container
         postsFeedContainer.prepend(postCard);
@@ -143,39 +145,155 @@ export let getCurrentUser = {
     }
   }
   
-  // Function to create post element
-  const createPostElement = (username, postText, timestamp) => {
-    const postDiv = document.createElement("div");
-    postDiv.className = "feed-card";
-    const timestr = `${timestamp}`;
-    const formattimestr = timestr.slice(0,10);
+  async function getUserTrends(userPosts) {
+    const trendCard = document.getElementById('trending-card'); 
+    const hashtagCounts = {};
   
-    postDiv.innerHTML = `
-      <div class="profile-photo">
-        <img src="./images/profile-photo-1.png" alt="Profile Photo">
+    userPosts.forEach(post => {
+      if (SingleWordHashtag(post)) {
+        const hashtags = HashtagsFromPost(post);
+  
+        hashtags.forEach(hashtag => {
+          const normalizedHashtag = hashtag.substring(1);
+  
+          hashtagCounts[normalizedHashtag] = (hashtagCounts[normalizedHashtag] || 0) + 1;
+        });
+      }
+    });
+  
+    Object.keys(hashtagCounts).forEach(hashtag => {
+      const count = hashtagCounts[hashtag];
+      const trendItem = document.createElement("div");
+      trendItem.className = "trend-item";
+      trendItem.textContent = `#${hashtag}`;
+      trendItem.style.color = "hsl(233, 96%, 65%)";
+      trendCard.appendChild(trendItem);
+    });
+  
+    console.log(hashtagCounts);
+  }
+  
+  function HashtagsFromPost(post) {
+    const regex = /#\w+/g;
+    const hashtags = post.match(regex);
+    return hashtags;
+  }
+  
+  function SingleWordHashtag(post) {
+    const regex = /#\w+/g;
+    return regex.test(post);
+  }
+  
+const createPostElement = (username, postId, postText, timestamp1, timestamp2, timestamp3, timestamp4, timestamp5) => {
+  const postDiv = document.createElement("div");
+  postDiv.className = "feed-card";
+  const hPostText = postText.replace(/#(\w+)/g, '<span class="primary">#$1</span>');
+  const year = timestamp1.substring(0,4);
+  const minute = timestamp2.substring(14, 16);
+  let dayornight = ''; 
+  let day = (parseInt(timestamp5.substring(8, 10)));
+
+  //Making it not Military Time
+  let hour = parseInt(timestamp3.substring(11, 13)) + 8;
+  if (hour >= 24) {
+    hour -= 24;
+    day += 1;
+    if (hour < 12) {
+      dayornight = 'AM';
+    }
+    else if (hour >= 12) {
+      dayornight = 'PM';
+    }
+  }
+  else if (hour < 24) {
+    if (hour < 12) {
+      dayornight = 'AM';
+    }
+    else if (hour > 13) {
+      hour -= 12;
+      dayornight = 'PM';
+    }
+  }
+   
+  //Setting the month
+  let month = parseInt(timestamp4.substring (5, 7));
+  switch (month) {
+    case 1:
+      month = 'JAN'; break;
+    case 2:
+      month = 'FEB'; break;
+    case 3:
+      month = 'MAR'; break;
+    case 4:
+      month = 'APR'; break;
+    case 5:
+      month = 'MAY'; break;
+    case 6:
+      month = 'JUN'; break;
+    case 7:
+      month = 'JUL'; break;
+    case 8:
+      month = 'AUG'; break;
+    case 9:
+      month = 'SEP'; break;
+    case 10:
+      month = 'OCT'; break; 
+    case 11:
+      month = 'NOV'; break;
+    case 12:
+      month = 'DEC'; break;
+  }
+
+
+  postDiv.innerHTML = `
+    <div class="profile-photo">
+      <img src="./images/profile-photo-1.png" alt="Profile Photo">
+    </div>
+    <div class="post-container">
+      <div class="user">
+        <h5>${username} <span class="handle muted">@${username}</span></h5>
+        <p class="secondary">${hour}:${minute} ${dayornight} · ${month} ${day}, ${year}</p>
       </div>
-      <div class="post-container">
-        <div class="user">
-          <h5>${username} <span class="handle muted">@${username}</span></h5>
-          <p class="primary">${formattimestr}</p>
+      <div class="post-content">${hPostText}</div>
+      <div class="like-btn">
+        <input type="checkbox" class='likeButton' id='${postId}'/>
+        <div class="like-btn-content">
+          <i class="ri-heart-line"></i>
+          <label>Like Post</label>
         </div>
-        <div class="post-content">${postText}</div>
-        <div class="like-btn">
-          <input type="checkbox" />
-          <div class="like-btn-content">
-            <i class="ri-heart-line"></i>
-            <label>Like Post</label>
-          </div>
-        </div>
       </div>
-      <div class="post-logo">
-        <i class="ri-chat-smile-2-line"></i>
-      </div>
-    `;
+    </div>
+    <div class="post-logo">
+      <i class="ri-chat-smile-2-line"></i>
+    </div>
+  `;
+
+  return postDiv;
+};
+
+export async function likePostAPI(postId, isChecked) {
+  let token = localStorage.getItem("token");
+  const likeAction = isChecked ? "like" : "unlike";
   
-    return postDiv;
-  };
-  
+  const res = await fetch(`http://localhost:3000/api/v1/posts/${postId}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify({
+        action: likeAction
+      })
+  })
+  if(res.ok && likeAction === 'like') {
+    console.log("Post Liked")
+  } else if (res.ok && likeAction === 'unlike') {
+    console.log("Post Unliked")
+  }  else {
+    console.log("Post Like Failure")
+  }
+}
+
   export async function fetchUserList() {
     let token = localStorage.getItem("token");
     const res = await fetch("http://localhost:3000/api/v1/users", {
