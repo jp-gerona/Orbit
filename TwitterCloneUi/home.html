@@ -15,6 +15,7 @@
   <!-- CSS files are loaded here -->
   <link rel="stylesheet" href="./styles/shared/general.css">
   <link rel="stylesheet" href="./styles/shared/main.css">
+  <link rel="stylesheet" href="./styles/shared/mediaqueries.css">
 
   <!-- Remix Icons for icons -->
   <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet"/>
@@ -69,29 +70,37 @@
           </div>
         </a>
 
+        <div class="tablet-profile-container">
+          <div class="profile-photo">
+            <img src="./images/profile-photo-1.png" alt="Profile Photo">
+          </div>
+        </div>
+
         <!-- * Left Side Bar Card -->
         <div class="sidebar-card">
           <a class="menu-item active" href="./home.html">
-            <span><i class="ri-home-2-fill"></i></span><p>Home</p>
+            <i class="ri-home-2-fill"></i><p>Home</p>
           </a>
           <a class="menu-item" href="./search.html">
-            <span><i class="ri-search-line"></i></i></span><p>Explore</p>
+            <i class="ri-search-line"></i><p>Explore</p>
           </a>
           <a class="menu-item" href="./profile.html">
-            <span><i class="ri-user-smile-line"></i></span><p>Profile</p>
+            <i class="ri-user-smile-line"></i><p>Profile</p>
           </a>
           <a class="menu-item">
-            <span><i class="ri-mail-line"></i></span><p>Messages</p>
+            <i class="ri-mail-line"></i><p>Messages</p>
           </a>
           <a class="menu-item">
-            <span><i class="ri-settings-3-line"></i></span><p>Settings</p>
+            <i class="ri-settings-3-line"></i><p>Settings</p>
           </a>
           <a class="menu-item" href="./index.html">
-            <span><i class="ri-logout-box-line"></i></span><p>Logout</p>
+            <i class="ri-logout-box-line"></i><p>Logout</p>
           </a>
         </div>
 
-        <label class="btn primary-btn link-1">Post <i class="ri-share-box-line"></i></label>
+        <div class="left-post-container">
+          <label class="btn primary-btn link-1"><p>Post</p> <i class="ri-quill-pen-fill"></i></label>
+        </div>
 
       <!-- * End of Left Side Content -->
       </div>
@@ -109,7 +118,7 @@
             <div class="post-container">
               <textarea 
                 required
-                maxlength="300"
+                maxlength="280"
                 placeholder="What's on your mind?" 
                 id="writePostModal" 
               ></textarea>
@@ -134,7 +143,7 @@
             <div class="post-container">
               <textarea 
                 required
-                maxlength="300"
+                maxlength="280"
                 placeholder="What's on your mind?" 
                 id="writePost" 
               ></textarea>
