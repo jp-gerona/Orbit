@@ -412,11 +412,12 @@ export async function likePostAPI(postId, isChecked) {
       }
       
     });
-    const findMore = document.createElement('div')
-    findMore.innerHTML = `<div>
-      <button>Find More</button>
-    </div>`
-    followDiv.appendChild(findMore);
+    const showMore = document.createElement('p');
+    showMore.classList.add('footnote', 'link-2');
+    showMore.innerHTML = `
+    <a href="./search.html" class="link-1">Show more<span><i class="ri-arrow-right-line"></i></span></a>
+    `
+    followDiv.appendChild(showMore);
   }
   
   

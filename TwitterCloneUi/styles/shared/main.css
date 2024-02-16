@@ -236,6 +236,10 @@ main .container .right {
   margin-bottom: 0.9rem;
 }
 
+.right .suggest-follows-card p {
+  align-self: self-start;
+}
+
 
 /* *Other Styles *
   /* ?Like Button */

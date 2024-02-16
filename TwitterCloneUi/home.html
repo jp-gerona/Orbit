@@ -4,7 +4,7 @@
   <!-- Resource prioritization -->
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
   <link rel="preload" href="./styles/shared/general.css" as="style">
-  <link rel="preload" href="./styles/shared/main-layout.css" as="style">
+  <link rel="preload" href="./styles/shared/main.css" as="style">
 
   <!-- Metadata of the HTML page -->
   <meta charset="UTF-8">
@@ -14,7 +14,7 @@
 
   <!-- CSS files are loaded here -->
   <link rel="stylesheet" href="./styles/shared/general.css">
-  <link rel="stylesheet" href="./styles/shared/main-layout.css">
+  <link rel="stylesheet" href="./styles/shared/main.css">
 
   <!-- Remix Icons for icons -->
   <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet"/>
@@ -52,7 +52,7 @@
 
       <!-- * Profile Card -->
       <div class="left">
-        <a class="profile-card">
+        <a class="profile-card" href="./profile.html">
           <div class="handle-container">
             <div class="profile-photo">
               <img src="./images/profile-photo-1.png" alt="Profile Photo">
@@ -143,46 +143,6 @@
         <!-- * Who to follow Card -->
         <div class="suggest-follows-card">
           <h4>Who to follow</h4>
-
-          <!-- ?Sample Follow list -->
-          <!-- <div class="follow-container">
-            <div class="profile-container">
-              <div class="profile-photo">
-                <img src="./images/profile-photo-2.png" alt="Profile Photo">
-              </div>
-              <div class="handle">
-                <h5>Lebron James</h5> 
-                <p class="muted">@lebron james</p> 
-              </div>
-            </div>
-
-            <div class="btn primary-btn follow-btn">
-              <input type="checkbox" />
-              <div class="follow-btn-content link-1">
-                <label>Follow</label>
-              </div>
-            </div>        
-          </div>
-
-          <div class="follow-container">
-            <div class="profile-container">
-              <div class="profile-photo">
-                <img src="./images/profile-photo-2.png" alt="Profile Photo">
-              </div>
-              <div class="handle">
-                <h5>IshowMeat</h5> 
-                <p class="muted">@IshowMeat</p> 
-              </div>
-            </div>
-
-            <div class="btn default-btn follow-btn">
-              <input type="checkbox" />
-              <div class="follow-btn-content link-1">
-                <label>Unfollow</label>
-              </div>
-            </div>        
-          </div> -->
-
         </div>
 
         
@@ -194,7 +154,7 @@
 
   </main>
 
-  <script type="module" src="scripts/home.js"></script>
+  <script type="module" src="scripts/main.js"></script>
   <script src="scripts/utils/preLoader.js"></script> 
 </body>
 </html>

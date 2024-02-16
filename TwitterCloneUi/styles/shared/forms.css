@@ -131,19 +131,3 @@
     transform: translateX(0);
   }
 }
-
-/* ?Footnote Link Styles */
-section .footnote {
-  margin-top: 1rem;
-  color: var(--muted);
-}
-
-section .footnote a i {
-  display: inline-block; 
-  transition: transform 0.2s ease;
-}
-
-section .footnote a:hover {
-  transition: all 0.2s ease;
-  color: var(--link-hover);
-}
