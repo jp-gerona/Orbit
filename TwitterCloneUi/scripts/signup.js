@@ -9,7 +9,7 @@ import { postCreateUser, sendToken } from './fetchAPI.js';
 
 const validateToken = () => {
   console.log(sendToken);
-  if(sendToken.token !== "" ||  sendToken.token !== null) {
+  if(sendToken.token !== null) {
     window.location.replace("home.html")
   } else {
     console.log("There is no existing token");

@@ -2,7 +2,7 @@ import { postCreatePost, getPosts, fetchUserList, sendToken, getCurrentUser, lik
 
 const validateToken = () => {
   console.log(sendToken);
-  if(sendToken.token === "" ||  sendToken.token === null) {
+  if(sendToken.token === null) {
     window.location.replace("index.html")
   } else {
     console.log("There is a token");
