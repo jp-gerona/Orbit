@@ -508,7 +508,7 @@ export async function likePostAPI(postId, isChecked) {
       if (user !== userName) {
         const userProfile = document.createElement('div');
         userProfile.classList.add('user-profile-card');
-        const randomCoverPhotoNumber = Math.floor(Math.random() * 4) + 1;
+        const randomCoverPhotoNumber = Math.floor(Math.random() * 5) + 1;
         const randomProfilePhotoNumber = Math.floor(Math.random() * 4) + 1;
 
         userProfile.innerHTML = `<div class="cover-container">
