@@ -6,7 +6,7 @@ const validateToken = () => {
   if(sendToken.token === "" ||  sendToken.token === null) {
     window.location.replace("index.html")
   } else {
-    console.log('There is a token');
+    console.log("There is a token");
   }
 }
 

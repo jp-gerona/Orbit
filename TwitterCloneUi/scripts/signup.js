@@ -1,11 +1,21 @@
 import handleInput from './utils/inputUtils.js';
-import { postCreateUser } from './fetchAPI.js';
+import { postCreateUser, sendToken } from './fetchAPI.js';
 /*
  * Validates the form matched by the provided selector. 
  * Loops through all validation rules defined in validationOptions, 
  * checks if the input passes each rule, and shows an error if not.
  * Handles real-time validation on blur and on submit.
  */
+
+const validateToken = () => {
+  console.log(sendToken);
+  if(sendToken.token !== "" ||  sendToken.token !== null) {
+    window.location.replace("home.html")
+  } else {
+    console.log("There is no existing token");
+  }
+}
+
 const validateForm = (formSelector, callback) => {
   const formElement = document.querySelector(formSelector);
   formElement.setAttribute('novalidate', '');
@@ -144,5 +154,6 @@ const sendtoAPI =  async (formElement) => {
     }
 }
 
+validateToken();
 validateForm('#JS-signupForm', sendtoAPI);
 handleInput('.text-field input');
