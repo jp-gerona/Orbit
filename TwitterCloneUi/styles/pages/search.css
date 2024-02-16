@@ -36,6 +36,10 @@ main .search-container .left {
   overflow: hidden;
 }
 
+.tablet-profile-container {
+  display: none;
+}
+
 .left .profile-card::before {
   content: '';
   position: absolute;
