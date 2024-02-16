@@ -1,8 +1,6 @@
 export default function likePost(likeBtnSelector, postDetails) {
   const likeBtns = document.querySelectorAll(likeBtnSelector);
   const currentUser = localStorage.getItem("user");
-  console.log(postDetails[0].likes)
-  console.log(currentUser)
 
   likeBtns.forEach(function(likeBtn) {
     const checkbox = likeBtn.querySelector('input[type="checkbox"]');

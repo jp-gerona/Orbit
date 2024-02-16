@@ -554,3 +554,24 @@ export async function likePostAPI(postId, isChecked) {
       }
     })  
   }
+
+  function filterUserProfiles(query) {
+    const userCards = document.querySelectorAll('.user-profile-card');
+    userCards.forEach(card => {
+        const username = card.querySelector('h5').textContent.toLowerCase();
+        if (username.includes(query.toLowerCase())) {
+            card.style.display = 'block';
+        } else {
+            card.style.display = 'none';
+        }
+    });
+}
+
+// Add event listener for the search input field
+document.addEventListener('DOMContentLoaded', () => {
+    const searchInput = document.getElementById('searchInput');
+    searchInput.addEventListener('input', () => {
+        const searchQuery = searchInput.value.trim();
+        filterUserProfiles(searchQuery);
+    });
+});

@@ -122,7 +122,7 @@ export let displayCurrentUser = () => {
   handlenameHolder.innerText = `@${username}`;
 }
 
-
+userLogout();
 
 validateToken();
 
@@ -132,6 +132,7 @@ displayCurrentUserProfile();
 //HIGHER THAN LOADER! no touchie
 fetchUserList();
 
+
 validateForm('#JS-createPostModal', '#writePostModal', 'postButtonModal', sendtoAPI);
 validateForm('#JS-createPost', '#writePost', 'postButton', sendtoAPI);
  
@@ -139,9 +140,6 @@ document.addEventListener("DOMContentLoaded", getPosts);
 
 likeHandler();
 followUser('.follow-btn');
-
-
-userLogout();
 
 document.addEventListener('DOMContentLoaded', function () {
   const postButton = document.querySelector('.btn.link-1');
