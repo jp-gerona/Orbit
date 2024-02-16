@@ -61,7 +61,7 @@
 .text-field input.has-text~.placeholder {
   top: 0;
   font-size: small;
-  background-color: var(--background);
+  background-color: var(--card);
 }
 
 .text-field input:focus~i {
@@ -69,20 +69,6 @@
 }
 
 /* ?Validation Styles for Text Fields */
-/* *Success */
-/*.text-field.success input {
-  border-color: var(--success);
-}
-
-.text-field.error .placeholder {
-  color: var(--success);
-}
-
-.text-field.success input:focus~.placeholder,
-.text-field.success input:valid~.placeholder {
-  color: var(--success);
-}*/
-
 /* *Error */
 .text-field.error input {
   border-color: var(--error);

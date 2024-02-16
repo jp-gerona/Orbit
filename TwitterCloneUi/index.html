@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="./styles/shared/general.css">
   <link rel="stylesheet" href="./styles/shared/forms.css">
   <link rel="stylesheet" href="./styles/pages/login.css">
+  <link rel="stylesheet" href="./styles/shared/mediaqueries.css">
 
   <!-- Remix Icons for icons -->
   <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet"/>
@@ -36,24 +37,26 @@
       <p>Launching into orbit . . .</p>
     </div>
   </section>
-  
-  <header>
-    <div class="logo-header">
-      <img src="./images/logo/Orbit.svg" alt="Logo">
-    </div>
-  </header>
+
+  <div class="background-container">
+    <img src="./images/background/login-background.png" alt="Login Background">
+  </div>
   
   <main>
-    <section class="login-section flex-center">
-      <h1 class="section-title">
-        Welcome back, <br /> Captain.
-      </h1>
-      <div class="signup-container">
+
+    <div class="content-container">
+      <div class="title-container">
+        <img src="./images/logo/Orbit.svg" alt="Title Logo">
+        <p>Ready to lauch again into Orbit? Log in to discover what's trending, connect with friends, and share your orbiting moments.</p>
+      </div>
+  
+      <div class="login-card">
+        <h4>Sign in to Orbit</h4>
         <form id="JS-loginForm" 
           autocomplete="off" 
           spellcheck="false"
         >
-
+  
           <div class="JS-formGroup">
             <div class="text-field">
               <input 
@@ -64,7 +67,7 @@
               <label class="helper" for="username"></label>
             </div>
           </div>
-
+  
           <div class="JS-formGroup">
             <div class="text-field">
               <input 
@@ -76,17 +79,18 @@
               <label class="helper" for="password"></label>
             </div>       
           </div>
-
+  
           <button type="submit" class="btn default-btn link-2">
             Log In <i class="ri-arrow-right-line"></i>
           </button>
-
+  
         </form>
         <p class="footnote link-2">
           Don't have an account? <a href="signup.html">Sign up<i class="ri-arrow-right-line"></i></a> 
         </p>
       </div>
-    </section>
+    </div>
+
   </main>
 
   <script type="module" src="scripts/login.js"></script>
