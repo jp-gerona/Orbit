@@ -127,11 +127,6 @@ input {
   align-items: center;
 }
 
-.container {
-  width: 90%;
-  margin: 0 auto;
-}
-
 hr {
   margin-bottom: 0.6rem;
   border: 1px solid var(--card-focused);
@@ -163,8 +158,6 @@ hr {
   left: 0;
   top: 0;
   right: 0;
-  margin-left: auto;
-  margin-right: auto;
   z-index: 999;
   background: var(--gradient-background);
   padding-bottom: 1rem;

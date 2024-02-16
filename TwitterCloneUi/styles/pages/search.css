@@ -8,13 +8,15 @@ main {
 }
 
   /* *Container */
-main .container {
+main .search-container {
+  width: 90%;
+  margin: 0 auto;
   display: grid;
   grid-template-columns: 225px auto;
   column-gap: 1.2rem;
 }
 
-main .container .left {
+main .search-container .left {
   height: max-content;
   position: sticky;
   top: 4.2rem;
