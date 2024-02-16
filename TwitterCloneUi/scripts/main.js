@@ -136,5 +136,22 @@ document.addEventListener("DOMContentLoaded", getPosts);
 likeHandler();
 followUser('.follow-btn');
 
-fetchUserList(); //fetch Users upon load
+fetchUserList(); 
 userLogout();
+
+document.addEventListener('DOMContentLoaded', function () {
+  const postButton = document.querySelector('.btn.link-1');
+  const modalBackdrop = document.querySelector('.modal-backdrop');
+  const modal = document.querySelector('.post-card.modal');
+  const closeModalButton = document.getElementById('closeModalButton');
+
+  postButton.addEventListener('click', function () {
+    modalBackdrop.style.display = 'block';
+    modal.style.display = 'block';
+  });
+
+  closeModalButton.addEventListener('click', function () {
+    modalBackdrop.style.display = 'none';
+    modal.style.display = 'none';
+  });
+});

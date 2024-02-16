@@ -21,6 +21,7 @@
 </head>
 
 <body>
+  <div class="modal-backdrop"></div>
   <!-- * Loading Screen -->
   <section class="loader-section">
     <div class="loader-icon-wrapper">
@@ -99,8 +100,8 @@
       <div class="middle">
 
          <!-- * User Create Post Text Field Card -->
-        <form id="JS-createPostModal" class="post-card modal" autocomplete="off">
-
+        <form id="JS-createPostModal" class="post-card modal" autocomplete="off" style="display: none;">
+            <button id="closeModalButton" class="btn secondary-btn">x</button>
             <div class="profile-photo">
               <img src="./images/profile-photo-1.png" alt="Profile Photo">
             </div>
@@ -177,7 +178,6 @@
     </div>
 
   </main>
-
   <script type="module" src="scripts/main.js"></script>
   <script src="scripts/utils/preLoader.js"></script> 
 </body>
