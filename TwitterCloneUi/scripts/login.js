@@ -74,9 +74,6 @@ const validateForm = (formSelector, callback) => {
 };
 
 const handlePostLoginUserResult = async (formElement, result) => {
-  const usernameTextField = formElement.querySelector('#username').parentNode;
-  const usernameHelper = usernameTextField.querySelector('.helper');
-  
   const passwordTextField = formElement.querySelector('#password').parentNode;
   const passwordHelper = passwordTextField.querySelector('.helper');
 

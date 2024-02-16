@@ -1,5 +1,4 @@
 import { postCreatePost, getPosts, fetchUserList, sendToken, getCurrentUser, likePostAPI, displayFollowing, displayExplore } from './fetchAPI.js';
-import followUser from './utils/followUtils.js';
 
 const validateToken = () => {
   console.log(sendToken);
@@ -96,7 +95,7 @@ const sendtoAPI = async (formGroup, writePostSelector, event) => {
 };
 
 const likeHandler = () => {
-  const likeButton = document.querySelector('.posts-feed') // Selects the parent element that contains the like button
+  const likeButton = document.querySelector('.posts-feed')
 
   likeButton.addEventListener('change', function(event) {
       const postId = event.target.id;
@@ -129,7 +128,7 @@ validateToken();
 displayCurrentUserHome();
 displayCurrentUserProfile();
 
-//HIGHER THAN LOADER! no touchie
+//HIGHER THAN LOADER! Dont Touch
 fetchUserList();
 
 
@@ -139,7 +138,6 @@ validateForm('#JS-createPost', '#writePost', 'postButton', sendtoAPI);
 document.addEventListener("DOMContentLoaded", getPosts);
 
 likeHandler();
-followUser('.follow-btn');
 
 document.addEventListener('DOMContentLoaded', function () {
   const postButton = document.querySelector('.btn.link-1');

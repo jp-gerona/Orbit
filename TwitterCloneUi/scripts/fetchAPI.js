@@ -1,5 +1,4 @@
 import likePost from './utils/likeUtils.js';
-import followUserAnim from './utils/followUtils.js';
 
 export async function postCreateUser(formObject) {
     let username = formObject.username;
@@ -59,7 +58,6 @@ export let sendToken = {
 export let getCurrentUser = {
   username: localStorage.getItem("user")
 }
-
   export async function postCreatePost(writePostSelector) {
     let post = document.querySelector(writePostSelector).value;
     let token = localStorage.getItem("token");
@@ -82,28 +80,6 @@ export let getCurrentUser = {
     }
 }
 
-  
-  // export async function postCreatePost() {
-  //     var post = document.getElementById('popupInput').value;
-  //     let token = localStorage.getItem("token");
-    
-  //     const res = await fetch('http://localhost:3000/api/v1/posts', {
-  //         method: 'POST',
-  //         headers: {
-  //             'Content-Type': 'application/json',
-  //             'Authorization': `Bearer ${token}`
-  //         },
-  //         body: JSON.stringify({
-  //             "content": post
-  //         })
-  //     })
-  //     if(res.ok){
-  //         console.log('successful')
-  //     } else {
-  //         console.log('failed')
-  //     }
-  // }
-
   export async function getPosts() {
     let token = localStorage.getItem("token");
   
@@ -115,42 +91,29 @@ export let getCurrentUser = {
           'Authorization': `Bearer ${token}`
         },
       });
-  
       if (!res.ok) {
         throw new Error('Failed to fetch posts');
       }
-  
       const data = await res.json();      
-
       const postContents = data.map(post => post.content);
       clearTrends();
       getUserTrends(postContents);
 
-      
-
-      // Select the posts-feed container
       const postsFeedContainer = document.querySelector(".posts-feed");
-  
-      // Clear existing posts
       postsFeedContainer.innerHTML = '';
-  
       const postDetailsArray = [];
 
-      // Loop through each post data
       data.forEach(post => {
-        // Create a new post element
         const postCard = createPostElement(post.postedBy, post.postId, post.content, post.dateTimePosted, post.dateTimePosted, post.dateTimePosted, post.dateTimePosted, post.dateTimePosted);
         const postDetails = {
           postId: post.postId,
           likes: post.likes
         }
         postDetailsArray.push(postDetails);
-        // Append the new post element at the beginning of the posts-feed container
         postsFeedContainer.prepend(postCard);
         likePost('.feed-card .like-btn', postDetailsArray);
         // retainLike(postDetailsArray)
       });
-  
     } catch (error) {
       console.error('Error occurred while fetching posts:', error);
     }
@@ -221,7 +184,6 @@ const createPostElement = (username, postId, postText, timestamp1, timestamp2, t
   let dayornight = ''; 
   let day = (parseInt(timestamp5.substring(8, 10)));
 
-  //Making it not Military Time
   let hour = parseInt(timestamp3.substring(11, 13)) + 8;
   if (hour >= 24) {
     hour -= 24;
@@ -243,7 +205,6 @@ const createPostElement = (username, postId, postText, timestamp1, timestamp2, t
     }
   }
    
-  //Setting the month
   let month = parseInt(timestamp4.substring (5, 7));
   switch (month) {
     case 1:
@@ -377,10 +338,11 @@ export async function likePostAPI(postId, isChecked) {
       if (user !== userName && displayedUsers < 3) {
         const userSuggestion = document.createElement("div");
         userSuggestion.className = "follow-container"
+        const randomProfilePhotoNumber = Math.floor(Math.random() * 4) + 1;
         userSuggestion.innerHTML = `
           <div class="profile-container">
             <div class="profile-photo">
-              <img src="./images/profile-photo-2.png" alt="Profile Photo">
+              <img src="./images/profile-photo-${randomProfilePhotoNumber}.png" alt="Profile Photo">
             </div>
             <div class="handle">
               <h5>${user}</h5> 
@@ -567,7 +529,6 @@ export async function likePostAPI(postId, isChecked) {
     });
 }
 
-// Add event listener for the search input field
 document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('searchInput');
     searchInput.addEventListener('input', () => {
