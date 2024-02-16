@@ -166,42 +166,47 @@ main .container .left {
   gap: 0.9rem;
 }
 
-/* *Other Styles */
-
-.follow-container {
-  width: 100%;
+.user-profile-card {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 0.9rem;
-  margin: 0.6rem 0;
-}
-
-.follow-container .profile-container {
-  display: flex;
-  flex-direction: row;
-  gap: 0.9rem
-}
-
-.follow-container .profile-container .profile-photo {
-  align-self: self-start;
-}
-
-.follow-container .profile-container .handle p {
-  font-size: small;
-}
-
-.follow-container .follow-btn {
+  flex-direction: column;
   position: relative;
-  padding: 0.8em 1em;
+  background-color: var(--card);
+  border-radius: var(--card-border-radius);
+  padding: var(--card-padding);
+  margin-bottom: 0.9rem;
+  width: 100%;
+  overflow: hidden;
 }
 
-.follow-container .follow-btn input {
-  cursor: pointer;
+.user-profile-card .cover-container {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
-  opacity: 0;
+}
+
+.user-profile-card .cover-container .cover-photo {
+  width: 100%;
+  object-fit: cover;
+  height: 6rem;
+}
+
+.user-profile-card .cover-container .profile-photo {
+  position: absolute;
+  width: 5rem;
+  top: 3.5rem;
+  left: 0.9rem;
+}
+
+.user-profile-card .profile-container {
+  z-index: 1; 
+  margin-top: 8.5rem;
+}
+
+.user-profile-card .profile-container .handle p {
+  font-size: small;
+}
+
+.user-profile-card .profile-container .follow-btn {
+  margin-top: 1.2rem;
 }

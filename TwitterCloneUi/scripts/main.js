@@ -31,7 +31,9 @@ let displayCurrentUserProfile = () => {
   } else {
     console.log("Failure due to being in Homepage")
   }
-  displayFollowing();
+  if(window.location.pathname.startsWith('TwitterCloneUi/profile.html')){
+    displayFollowing();
+  }
 }
 
 const validateForm = (formSelector, writePostSelector, postButtonSelector, callback) => {
@@ -39,6 +41,7 @@ const validateForm = (formSelector, writePostSelector, postButtonSelector, callb
   const textarea = formGroup.querySelector(writePostSelector);
   const charCount = formGroup.querySelector('.char-count');
   const postButton = document.getElementById(postButtonSelector);
+  formGroup.setAttribute('novalidate', '');
 
   postButton.disabled = true;
 

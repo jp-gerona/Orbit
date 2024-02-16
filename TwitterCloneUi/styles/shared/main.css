@@ -241,6 +241,29 @@ main .container .right {
   align-self: self-start;
 }
 
+.follow-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.9rem;
+  margin: 0.6rem 0;
+}
+
+.follow-container .profile-container {
+  display: flex;
+  flex-direction: row;
+  gap: 0.9rem
+}
+
+.follow-container .profile-container .profile-photo {
+  align-self: self-start;
+}
+
+.follow-container .profile-container .handle p {
+  font-size: small;
+}
+
 
 /* *Other Styles *
   /* ?Like Button */
@@ -290,44 +313,6 @@ main .container .right {
   100% {
     transform: scale(1);
   }
-}
-
-.follow-container {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 0.9rem;
-  margin: 0.6rem 0;
-}
-
-.follow-container .profile-container {
-  display: flex;
-  flex-direction: row;
-  gap: 0.9rem
-}
-
-.follow-container .profile-container .profile-photo {
-  align-self: self-start;
-}
-
-.follow-container .profile-container .handle p {
-  font-size: small;
-}
-
-.follow-container .follow-btn {
-  position: relative;
-  padding: 0.8em 1em;
-}
-
-.follow-container .follow-btn input {
-  cursor: pointer;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
 }
 
 
