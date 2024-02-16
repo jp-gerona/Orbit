@@ -126,6 +126,8 @@ export let getCurrentUser = {
       clearTrends();
       getUserTrends(postContents);
 
+      
+
       // Select the posts-feed container
       const postsFeedContainer = document.querySelector(".posts-feed");
   
@@ -394,13 +396,14 @@ export async function likePostAPI(postId, isChecked) {
           const usernameToFollow = this.getAttribute('data-username');
           const followState = followButton.closest('.btn');
           const followLabel = this.nextElementSibling.querySelector('label');
-  
+          
           if (followButton.checked) {
             console.log(`Followed ${usernameToFollow} by ${userName}`);
             followUser(userName, usernameToFollow);
             followState.classList.add('default-btn');
             followState.classList.remove('primary-btn');
             followLabel.innerText = "Unfollow"
+            
           } else {
             console.log(`Unfollowed ${usernameToFollow} by ${userName}`);
             unfollowUser(userName, usernameToFollow);
@@ -408,9 +411,8 @@ export async function likePostAPI(postId, isChecked) {
             followState.classList.add('primary-btn');
             followLabel.innerText = "Follow"
           }
-        });
+        }); 
       }
-      
     });
     const showMore = document.createElement('p');
     showMore.classList.add('footnote', 'link-2');
@@ -430,6 +432,7 @@ export async function likePostAPI(postId, isChecked) {
         'Authorization': `Bearer ${token}`
       },
     })
+    displayFollowing();
   }
   
   async function unfollowUser(user,following) { 
@@ -441,6 +444,7 @@ export async function likePostAPI(postId, isChecked) {
         'Authorization': `Bearer ${token}`
       },
     })
+    displayFollowing();
   }
   
   async function followCheck(user) {
@@ -454,4 +458,13 @@ export async function likePostAPI(postId, isChecked) {
     })
     let data = await res.json();
     return data;
+  }
+
+  export async function displayFollowing() {
+    const user = getCurrentUser.username;
+    const followingData = await followCheck(user);
+    const numberOfFollowing = followingData.length;
+    
+    const followingCount = document.querySelector('.following-count');
+    followingCount.innerHTML = `${numberOfFollowing} <span class="muted">Following</span>`;
   }
