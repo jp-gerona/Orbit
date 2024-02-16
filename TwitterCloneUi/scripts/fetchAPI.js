@@ -432,7 +432,10 @@ export async function likePostAPI(postId, isChecked) {
         'Authorization': `Bearer ${token}`
       },
     })
-    displayFollowing();
+    if(window.location.pathname.startsWith('TwitterCloneUi/profile.html')){
+      displayFollowing();
+    }
+    
   }
   
   async function unfollowUser(user,following) { 
@@ -444,7 +447,9 @@ export async function likePostAPI(postId, isChecked) {
         'Authorization': `Bearer ${token}`
       },
     })
-    displayFollowing();
+    if(window.location.pathname.startsWith('TwitterCloneUi/profile.html')){
+      displayFollowing();
+    }
   }
   
   async function followCheck(user) {
