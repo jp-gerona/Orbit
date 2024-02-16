@@ -3,8 +3,8 @@ import { postLogIn, sendToken } from './fetchAPI.js';
 
 const validateToken = () => {
   console.log(sendToken);
-  if (sendToken.token !== "" && sendToken.token !== null) {
-    window.location.replace("home.html");
+  if(sendToken.token !== "" &&  sendToken.token !== null) {
+    window.location.replace("home.html")
   } else {
     console.log("There is no existing token");
   }

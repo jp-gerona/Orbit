@@ -15,6 +15,7 @@
   <!-- CSS files are loaded here -->
   <link rel="stylesheet" href="./styles/shared/general.css">
   <link rel="stylesheet" href="./styles/pages/search.css">
+  <link rel="stylesheet" href="./styles/shared/main.css">
   <link rel="stylesheet" href="./styles/shared/mediaqueries.css">
 
   <!-- Remix Icons for icons -->
@@ -107,137 +108,36 @@
 
       <!-- * Start of Middle Side Content -->
       <div class="middle">
+        <form id="JS-createPostModal" class="post-card modal" autocomplete="off" style="display: none;">
+          <button id="closeModalButton" class="btn secondary-btn">x</button>
+          <div class="profile-photo">
+            <img src="./images/profile-photo-1.png" alt="Profile Photo">
+          </div>
+
+          <div class="post-container">
+            <textarea 
+              required
+              maxlength="280"
+              placeholder="Tell your cosmic tales!" 
+              id="writePostModal" 
+            ></textarea>
+            <hr>
+
+            <div class="button-container">
+              <div class="char-count"></div>
+              <button type="submit" value="Post" id="postButtonModal" class="btn primary-btn link-2">
+                Post <i class="ri-arrow-right-line"></i>
+              </button>
+            </div>
+          </div>
+         
+      </form>
         <div class="searchbar-container">
           <input type="text" placeholder="Search for users in Orbit" id="searchInput">
           <i class="ri-search-line"></i>
         </div>
 
         <div class="users-grid">
-
-          <div class="user-profile-card">
-            <div class="cover-container">
-              <img class="cover-photo" src="./images/background/cover-photo-5.jpg" alt="Cover Photo">
-              <div class="profile-photo">
-                <img src="./images/profile-photo-4.png" alt="Profile Photo">
-              </div>
-            </div>
-            <div class="profile-container">
-              <div class="handle">
-                <h5 >Orbit User</h5> 
-                <p class="muted">@OrbitUser</p> 
-              </div> 
-              <div class="btn primary-btn follow-btn">
-                <input type="checkbox" class="follow-box" data-username="${user}"/>
-                <div class="follow-btn-content link-1">
-                  <label>Follow</label>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="user-profile-card">
-            <div class="cover-container">
-              <img class="cover-photo" src="./images/background/cover-photo-4.webp" alt="Cover Photo">
-              <div class="profile-photo">
-                <img src="./images/profile-photo-1.png" alt="Profile Photo">
-              </div>
-            </div>
-            <div class="profile-container">
-              <div class="handle">
-                <h5 >Orbit User</h5> 
-                <p class="muted">@OrbitUser</p> 
-              </div> 
-              <div class="btn primary-btn follow-btn">
-                <input type="checkbox" class="follow-box" data-username="${user}"/>
-                <div class="follow-btn-content link-1">
-                  <label>Follow</label>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="user-profile-card">
-            <div class="cover-container">
-              <img class="cover-photo" src="./images/background/cover-photo-3.jpeg" alt="Cover Photo">
-              <div class="profile-photo">
-                <img src="./images/profile-photo-2.png" alt="Profile Photo">
-              </div>
-            </div>
-            <div class="profile-container">
-              <div class="handle">
-                <h5 >Orbit User</h5> 
-                <p class="muted">@OrbitUser</p> 
-              </div> 
-              <div class="btn primary-btn follow-btn">
-                <input type="checkbox" class="follow-box" data-username="${user}"/>
-                <div class="follow-btn-content link-1">
-                  <label>Follow</label>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="user-profile-card">
-            <div class="cover-container">
-              <img class="cover-photo" src="./images/background/cover-photo-2.webp" alt="Cover Photo">
-              <div class="profile-photo">
-                <img src="./images/profile-photo-3.png" alt="Profile Photo">
-              </div>
-            </div>
-            <div class="profile-container">
-              <div class="handle">
-                <h5 >Orbit User</h5> 
-                <p class="muted">@OrbitUser</p> 
-              </div> 
-              <div class="btn primary-btn follow-btn">
-                <input type="checkbox" class="follow-box" data-username="${user}"/>
-                <div class="follow-btn-content link-1">
-                  <label>Follow</label>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="user-profile-card">
-            <div class="cover-container">
-              <img class="cover-photo" src="./images/background/cover-photo-1.webp" alt="Cover Photo">
-              <div class="profile-photo">
-                <img src="./images/profile-photo-4.png" alt="Profile Photo">
-              </div>
-            </div>
-            <div class="profile-container">
-              <div class="handle">
-                <h5 >Orbit User</h5> 
-                <p class="muted">@OrbitUser</p> 
-              </div> 
-              <div class="btn primary-btn follow-btn">
-                <input type="checkbox" class="follow-box" data-username="${user}"/>
-                <div class="follow-btn-content link-1">
-                  <label>Follow</label>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="user-profile-card">
-            <div class="cover-container">
-              <img class="cover-photo" src="./images/background/cover-photo-5.jpg" alt="Cover Photo">
-              <div class="profile-photo">
-                <img src="./images/profile-photo-3.png" alt="Profile Photo">
-              </div>
-            </div>
-            <div class="profile-container">
-              <div class="handle">
-                <h5 >Orbit User</h5> 
-                <p class="muted">@OrbitUser</p> 
-              </div> 
-              <div class="btn primary-btn follow-btn">
-                <input type="checkbox" class="follow-box" data-username="${user}"/>
-                <div class="follow-btn-content link-1">
-                  <label>Follow</label>
-                </div>
-              </div>
-            </div>
-          </div>
 
           
         <!-- * End of User Grid Content -->
@@ -249,7 +149,24 @@
     </div>
 
   </main>
-
+  <script>
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    const postButton = document.querySelector('.btn.link-1');
+    const modalBackdrop = document.querySelector('.modal-backdrop');
+    const modal = document.querySelector('.post-card.modal');
+    const closeModalButton = document.getElementById('closeModalButton');
+  
+    postButton.addEventListener('click', function () {
+      modalBackdrop.style.display = 'block';
+      modal.style.display = 'block';
+    });
+  
+    closeModalButton.addEventListener('click', function () {
+      modalBackdrop.style.display = 'none';
+      modal.style.display = 'none';
+    });
+  });</script>
   <script type="module" src="scripts/main.js"></script>
   <script src="scripts/utils/preLoader.js"></script> 
 </body>
