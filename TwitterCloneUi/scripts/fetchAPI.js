@@ -80,44 +80,51 @@ export let getCurrentUser = {
     }
 }
 
-  export async function getPosts() {
-    let token = localStorage.getItem("token");
-  
-    try {
-      const res = await fetch('http://localhost:3000/api/v1/posts', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        },
-      });
-      if (!res.ok) {
-        throw new Error('Failed to fetch posts');
-      }
-      const data = await res.json();      
-      const postContents = data.map(post => post.content);
-      clearTrends();
-      getUserTrends(postContents);
+export async function getPosts() {
+  let token = localStorage.getItem("token");
 
-      const postsFeedContainer = document.querySelector(".posts-feed");
-      postsFeedContainer.innerHTML = '';
-      const postDetailsArray = [];
+  try {
+    const res = await fetch('http://localhost:3000/api/v1/posts', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+    });
 
-      data.forEach(post => {
-        const postCard = createPostElement(post.postedBy, post.postId, post.content, post.dateTimePosted, post.dateTimePosted, post.dateTimePosted, post.dateTimePosted, post.dateTimePosted);
-        const postDetails = {
-          postId: post.postId,
-          likes: post.likes
-        }
-        postDetailsArray.push(postDetails);
-        postsFeedContainer.prepend(postCard);
-        likePost('.feed-card .like-btn', postDetailsArray);
-        // retainLike(postDetailsArray)
-      });
-    } catch (error) {
-      console.error('Error occurred while fetching posts:', error);
+    if (!res.ok) {
+      throw new Error('Failed to fetch posts');
     }
+
+    const data = await res.json();
+
+    data.sort((a, b) => new Date(a.dateTimePosted) - new Date(b.dateTimePosted));
+
+    const postContents = data.map(post => post.content);
+    clearTrends();
+    getUserTrends(postContents);
+
+    const postsFeedContainer = document.querySelector(".posts-feed");
+    postsFeedContainer.innerHTML = '';
+    const postDetailsArray = [];
+
+    data.forEach(post => {
+      const postCard = createPostElement(post.postedBy, post.postId, post.content, post.dateTimePosted, post.dateTimePosted, post.dateTimePosted, post.dateTimePosted, post.dateTimePosted);
+      const postDetails = {
+        postId: post.postId,
+        likes: post.likes
+      }
+      postDetailsArray.push(postDetails);
+      postsFeedContainer.prepend(postCard);
+      likePost('.feed-card .like-btn', postDetailsArray);
+      // retainLike(postDetailsArray)
+    });
+  } catch (error) {
+    console.error('Error occurred while fetching posts:', error);
   }
+}
+
+
   
   async function getUserTrends(userPosts) {
     const trendCard = document.getElementById('trending-card');
