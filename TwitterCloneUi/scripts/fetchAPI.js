@@ -247,7 +247,7 @@ const createPostElement = (username, postId, postText, timestamp1, timestamp2, t
     </div>
     <div class="post-container">
       <div class="user">
-        <h5>${username} <span class="handle muted">@${username}</span></h5>
+        <h5>${username} <span class="handle muted">@${username.toLowerCase()}</span></h5>
         <p class="primary">${hour}:${minute} ${dayornight} · ${month} ${day}, ${year}</p>
       </div>
       <div class="post-content">${hPostText}</div>
@@ -322,26 +322,6 @@ export async function likePostAPI(postId, isChecked) {
     const userName = getCurrentUser.username;
     let displayedUsers = 0; 
     users.forEach(user => {
-      followCheck(userName)
-        .then(followerList => {
-          for (let u of followerList) {
-            const checkbox = document.querySelector(`[data-username="${u}"]`);
-            if (user === u) {
-              if (checkbox) {
-                const followState = checkbox.closest('.btn');
-                const followLabel = checkbox.nextElementSibling.querySelector('label');
-                checkbox.checked = true;
-                console.log(u, "is checked");
-                followState.classList.add('default-btn')
-                followState.classList.remove('primary-btn')
-                followLabel.innerText = "Unfollow"
-              } else {
-                console.log("can't see user: ", u)
-              }
-            }
-          }
-        })
-    
       if (user !== userName && displayedUsers < 3) {
         const userSuggestion = document.createElement("div");
         userSuggestion.className = "follow-container"
@@ -353,7 +333,7 @@ export async function likePostAPI(postId, isChecked) {
             </div>
             <div class="handle">
               <h5>${user}</h5> 
-              <p class="muted">@${user}</p> 
+              <p class="muted">@${user.toLowerCase()}</p> 
             </div>
           </div>
   
@@ -363,8 +343,28 @@ export async function likePostAPI(postId, isChecked) {
               <label>Follow</label>
             </div>
           </div>`;
-  
+          followCheck(userName)
+          .then(followerList => {
+            for (let u of followerList) {
+              const checkbox = document.querySelector(`[data-username="${u}"]`);
+              if (user === u) {
+                if (checkbox) {
+                  const followState = checkbox.closest('.btn');
+                  const followLabel = checkbox.nextElementSibling.querySelector('label');
+                  checkbox.checked = true;
+                  console.log(u, "is checked");
+                  followState.classList.add('default-btn')
+                  followState.classList.remove('primary-btn')
+                  followLabel.innerText = "Unfollow"
+                  followDiv.removeChild(userSuggestion);
+                } else {
+                  console.log("can't see user: ", u)
+                }
+              }
+            }
+          })  
         followDiv.appendChild(userSuggestion);
+        
         displayedUsers++;
   
         const followButton = document.querySelector('[data-username='+user+']')
@@ -380,7 +380,6 @@ export async function likePostAPI(postId, isChecked) {
             followState.classList.add('default-btn');
             followState.classList.remove('primary-btn');
             followLabel.innerText = "Unfollow"
-            
           } else {
             console.log(`Unfollowed ${usernameToFollow} by ${userName}`);
             unfollowUser(userName, usernameToFollow);
@@ -398,6 +397,7 @@ export async function likePostAPI(postId, isChecked) {
     `
     followDiv.appendChild(showMore);
   }
+
   
   async function followUser(user,following) { 
     let token = localStorage.getItem("token");
@@ -497,7 +497,6 @@ export async function likePostAPI(postId, isChecked) {
             </div>
           </div>`
         userGrid.appendChild(userProfile);
-
         const followButton = document.querySelector('[data-username='+user+']')
   
         followButton.addEventListener('click', function () {
