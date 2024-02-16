@@ -215,7 +215,7 @@ export let getCurrentUser = {
 const createPostElement = (username, postId, postText, timestamp1, timestamp2, timestamp3, timestamp4, timestamp5) => {
   const postDiv = document.createElement("div");
   postDiv.className = "feed-card";
-  const hPostText = postText.replace(/#(\w+)/g, '<span class="primary">#$1</span>');
+  const hPostText = postText.replace(/#(\w+)/g, '<span class="secondary">#$1</span>');
   const year = timestamp1.substring(0,4);
   const minute = timestamp2.substring(14, 16);
   let dayornight = ''; 
@@ -280,7 +280,7 @@ const createPostElement = (username, postId, postText, timestamp1, timestamp2, t
     <div class="post-container">
       <div class="user">
         <h5>${username} <span class="handle muted">@${username}</span></h5>
-        <p class="secondary">${hour}:${minute} ${dayornight} · ${month} ${day}, ${year}</p>
+        <p class="primary">${hour}:${minute} ${dayornight} · ${month} ${day}, ${year}</p>
       </div>
       <div class="post-content">${hPostText}</div>
       <div class="like-btn">
