@@ -39,6 +39,7 @@ const validateForm = (formSelector, writePostSelector, postButtonSelector, callb
   const textarea = formGroup.querySelector(writePostSelector);
   const charCount = formGroup.querySelector('.char-count');
   const postButton = document.getElementById(postButtonSelector);
+  formGroup.setAttribute('novalidate', '');
 
   postButton.disabled = true;
 
