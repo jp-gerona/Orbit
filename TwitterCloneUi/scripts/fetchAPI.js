@@ -172,18 +172,18 @@ export let getCurrentUser = {
       return countComparison;
     });
   
-    sortedHashtags.forEach(hashtag => {
-      //const count = hashtagCounts[hashtag];
+
+    const numberOfTrendsToDisplay = Math.min(10, sortedHashtags.length);
+    for (let i = 0; i < numberOfTrendsToDisplay; i++) {
+      const hashtag = sortedHashtags[i];
       const trendItem = document.createElement("div");
       trendItem.className = "trend-item";
-      trendItem.textContent = `#${hashtag}`; // add count here?
+      trendItem.textContent = `#${hashtag}`;
       trendItem.style.color = "hsl(233, 96%, 65%)";
       trendCard.appendChild(trendItem);
-    });
-  
+    }
     console.log(hashtagCounts);
   }
-
 
   function clearTrends() {
     const trendCard = document.getElementById('trending-card');
