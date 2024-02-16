@@ -9,6 +9,8 @@ main {
 
   /* *Container */
 main .container {
+  width: 90%;
+  margin: 0 auto;
   display: grid;
   grid-template-columns: 225px auto 335px;
   column-gap: 1.2rem;
@@ -32,6 +34,10 @@ main .container .left {
   justify-content: center;
   width: 100%;
   overflow: hidden;
+}
+
+.tablet-profile-container {
+  display: none;
 }
 
 .left .profile-card::before {
@@ -92,7 +98,7 @@ main .container .left {
   display: flex;
   column-gap: 1.2em;
   align-items: center;
-  height: 3.5rem;
+  height: 3rem;
   margin: 0.5rem 0;
   border-radius: var(--card-border-radius);
   transition: background-color 0.2s ease;
@@ -147,8 +153,7 @@ main .container .left {
   outline: none;
   border: none;
   width: 100%;
-  padding-top: 1rem;
-  padding-bottom: 0.5rem;
+  padding: 1rem 0;
   resize: none;
   color: var(--text);
   background-color: var(--card);

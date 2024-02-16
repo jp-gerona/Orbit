@@ -6,7 +6,7 @@ const validateToken = () => {
   if(sendToken.token === "" ||  sendToken.token === null) {
     window.location.replace("index.html")
   } else {
-    console.log('There is a token');
+    console.log("There is a token");
   }
 }
 
@@ -44,8 +44,8 @@ const validateForm = (formSelector, writePostSelector, postButtonSelector, callb
   postButton.disabled = true;
 
   const updateCharCount = () => {
-    const remainingChars = 300 - textarea.value.length;
-    charCount.innerHTML = `${remainingChars} / 300 characters <i class="ri-quill-pen-line"></i>`;
+    const remainingChars = 280 - textarea.value.length;
+    charCount.innerHTML = `${remainingChars} / 280 characters <i class="ri-quill-pen-line"></i>`;
   };
 
   textarea.addEventListener('input', function() {
