@@ -1,4 +1,4 @@
-import { postCreatePost, getPosts, fetchUserList, sendToken, getCurrentUser, likePostAPI } from './fetchAPI.js';
+import { postCreatePost, getPosts, fetchUserList, sendToken, getCurrentUser, likePostAPI, displayFollowing } from './fetchAPI.js';
 import followUser from './utils/followUtils.js';
 
 const textarea = document.getElementById('writePost');
@@ -36,6 +36,7 @@ let displayCurrentUserProfile = () => {
   } else {
     console.log("Failure due to being in Homepage")
   }
+  displayFollowing();
 }
 
 
