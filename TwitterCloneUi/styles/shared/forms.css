@@ -99,6 +99,9 @@
   color: var(--error);
 }
 
+.text-field .helper.error {
+  color: var(--error);
+}
 .text-field .helper.shake {
   animation: errorShake 0.3s ease-in-out;
 }

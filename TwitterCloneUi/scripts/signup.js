@@ -8,6 +8,7 @@ import { postCreateUser } from './fetchAPI.js';
  */
 const validateForm = (formSelector, callback) => {
   const formElement = document.querySelector(formSelector);
+  formElement.setAttribute('novalidate', '');
 
   /*
    * validationOptions - Array of validation rule objects to check form inputs against.
@@ -83,12 +84,6 @@ const validateForm = (formSelector, callback) => {
     return !formGroupError;
   };
 
-  /*
-   * Disables HTML5 form validation by setting the novalidate attribute on the form element.
-   * This allows us to handle validation manually with JavaScript instead.
-   */
-  formElement.setAttribute('novalidate', '');
-
   Array.from(formElement.elements).forEach(element => {
     element.addEventListener('blur', event => {
       validateSingleFormGroup(event.srcElement.parentElement.parentElement)
@@ -125,6 +120,11 @@ const handlePostCreateUserResult = async (formElement, result) => {
   if (!result) {
     usernameHelper.textContent = `${usernamePlaceholder.textContent} already exists.`;
     usernameTextField.classList.add('error');
+    usernameHelper.classList.add('shake');
+
+    usernameTextField.addEventListener('animationend', function() {
+      usernameHelper.classList.remove('shake');
+    });
   }
 };
 

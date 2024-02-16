@@ -23,9 +23,9 @@ export async function postCreateUser(formObject) {
     }
 }
 
-  export async function postLogIn() {
-    var username = document.getElementById('username').value;
-    var password = document.getElementById('password').value;
+  export async function postLogIn(formObject) {
+    let username = formObject.username;
+    let password = formObject.password;
   
     const res = await fetch('http://localhost:3000/api/v1/auth/login', {
         method: 'POST',
@@ -45,8 +45,10 @@ export async function postCreateUser(formObject) {
         localStorage.setItem("user", username)
         console.log(localStorage)
         window.location.replace("home.html");
+        return true;
     } else {
         console.log('login fails')
+        return false;
     }
   }
 

@@ -25,9 +25,8 @@
   --title: var(--white);
   --text: var(--white-800);
   --muted: var(--white-500);
-  --like: var(--)
-  --link: var(--white);
-  --link-hover: var(--white-800);
+  --link:	hsl(233, 96%, 70%);
+  --link-hover: hsla(233, 96%, 70%, 0.82);
 
   /* ?Card Variables */
   --card: hsl(228, 24%, 4%);
