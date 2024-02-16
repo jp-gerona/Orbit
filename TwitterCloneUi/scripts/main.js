@@ -96,16 +96,24 @@ const sendtoAPI = async (formGroup, writePostSelector, event) => {
 
 const likeHandler = () => {
   const likeButton = document.querySelector('.posts-feed') // Selects the parent element that contains the like button
-  likeButton.addEventListener('change', function(event) {
-  
-  if (event.target.matches('.likeButton')) {
-    
-    const postId = event.target.id;
-    const isChecked = event.target.checked;
 
-    likePostAPI(postId, isChecked);
-  }
-});
+  likeButton.addEventListener('change', function(event) {
+    if (event.target.matches('.likeButton')) {
+      let isChecked;
+      const parentDiv = event.target.closest('.like-btn');
+      const labelElement = parentDiv.querySelector('.likeButtonLabel');
+      console.log(labelElement.textContent)
+      if(labelElement.textContent === "Unlike Post") {
+        isChecked = false;
+      } else {
+        isChecked = true;
+      }
+
+      const postId = event.target.id;
+
+      likePostAPI(postId, isChecked);
+    }
+  });
 }
 
 const userLogout = () => {

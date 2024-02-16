@@ -134,14 +134,21 @@ export let getCurrentUser = {
       // Clear existing posts
       postsFeedContainer.innerHTML = '';
   
+      const postDetailsArray = [];
+
       // Loop through each post data
       data.forEach(post => {
         // Create a new post element
         const postCard = createPostElement(post.postedBy, post.postId, post.content, post.dateTimePosted, post.dateTimePosted, post.dateTimePosted, post.dateTimePosted, post.dateTimePosted);
-  
+        const postDetails = {
+          postId: post.postId,
+          likes: post.likes
+        }
+        postDetailsArray.push(postDetails);
         // Append the new post element at the beginning of the posts-feed container
         postsFeedContainer.prepend(postCard);
-        likePost('.feed-card .like-btn');
+        likePost('.feed-card .like-btn', postDetailsArray);
+        // retainLike(postDetailsArray)
       });
   
     } catch (error) {
@@ -280,7 +287,7 @@ const createPostElement = (username, postId, postText, timestamp1, timestamp2, t
         <input type="checkbox" class='likeButton' id='${postId}'/>
         <div class="like-btn-content">
           <i class="ri-heart-line"></i>
-          <label>Like Post</label>
+          <label class="likeButtonLabel">Like Post</label>
         </div>
       </div>
     </div>
