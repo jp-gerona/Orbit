@@ -488,7 +488,6 @@ export async function likePostAPI(postId, isChecked) {
           for (let u of followerList) {
             if (user === u) {
               const checkbox = document.querySelector(`[data-username="${u}"]`);
-              checkbox.remove();
               if (checkbox) {
                 const followState = checkbox.closest('.btn');
                 const followLabel = checkbox.nextElementSibling.querySelector('label');
