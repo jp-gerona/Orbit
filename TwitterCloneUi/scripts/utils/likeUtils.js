@@ -1,8 +1,6 @@
 export default function likePost(likeBtnSelector, postDetails) {
   const likeBtns = document.querySelectorAll(likeBtnSelector);
   const currentUser = localStorage.getItem("user");
-  console.log(postDetails[0].likes)
-  console.log(currentUser)
 
   likeBtns.forEach(function(likeBtn) {
     const checkbox = likeBtn.querySelector('input[type="checkbox"]');
@@ -13,6 +11,7 @@ export default function likePost(likeBtnSelector, postDetails) {
 
     for (let i = 0; i < postDetails.length; i++) {
       if(postDetails[i].postId === postId  && postDetails[i].likes.includes(currentUser)) {
+        checkbox.checked = true;
         likeBtn.classList.add('like-effect');
 
         heartIcon.classList.remove('ri-heart-line');
@@ -33,7 +32,7 @@ export default function likePost(likeBtnSelector, postDetails) {
 
         heartIcon.classList.remove('ri-heart-fill');
         heartIcon.classList.add('ri-heart-line');
-        label.textContent = 'Like Post';
+        label.textContent = 'Like Post';  
       }
     });
 

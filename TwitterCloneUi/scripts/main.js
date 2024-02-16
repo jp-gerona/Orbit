@@ -1,4 +1,4 @@
-import { postCreatePost, getPosts, fetchUserList, sendToken, getCurrentUser, likePostAPI, displayFollowing } from './fetchAPI.js';
+import { postCreatePost, getPosts, fetchUserList, sendToken, getCurrentUser, likePostAPI, displayFollowing, displayExplore } from './fetchAPI.js';
 import followUser from './utils/followUtils.js';
 
 const validateToken = () => {
@@ -6,7 +6,7 @@ const validateToken = () => {
   if(sendToken.token === "" ||  sendToken.token === null) {
     window.location.replace("index.html")
   } else {
-    console.log('There is a token');
+    console.log("There is a token");
   }
 }
 
@@ -31,9 +31,7 @@ let displayCurrentUserProfile = () => {
   } else {
     console.log("Failure due to being in Homepage")
   }
-  if(window.location.pathname.startsWith('TwitterCloneUi/profile.html')){
-    displayFollowing();
-  }
+  displayFollowing();
 }
 
 const validateForm = (formSelector, writePostSelector, postButtonSelector, callback) => {
@@ -101,21 +99,10 @@ const likeHandler = () => {
   const likeButton = document.querySelector('.posts-feed') // Selects the parent element that contains the like button
 
   likeButton.addEventListener('change', function(event) {
-    if (event.target.matches('.likeButton')) {
-      let isChecked;
-      const parentDiv = event.target.closest('.like-btn');
-      const labelElement = parentDiv.querySelector('.likeButtonLabel');
-      console.log(labelElement.textContent)
-      if(labelElement.textContent === "Unlike Post") {
-        isChecked = false;
-      } else {
-        isChecked = true;
-      }
-
       const postId = event.target.id;
+      const isChecked = event.target.checked;
 
       likePostAPI(postId, isChecked);
-    }
   });
 }
 
@@ -135,20 +122,24 @@ export let displayCurrentUser = () => {
   handlenameHolder.innerText = `@${username}`;
 }
 
+userLogout();
 
 validateToken();
+
 displayCurrentUserHome();
 displayCurrentUserProfile();
 
+//HIGHER THAN LOADER! no touchie
+fetchUserList();
+
+
 validateForm('#JS-createPostModal', '#writePostModal', 'postButtonModal', sendtoAPI);
 validateForm('#JS-createPost', '#writePost', 'postButton', sendtoAPI);
-
+ 
 document.addEventListener("DOMContentLoaded", getPosts);
+
 likeHandler();
 followUser('.follow-btn');
-
-fetchUserList(); 
-userLogout();
 
 document.addEventListener('DOMContentLoaded', function () {
   const postButton = document.querySelector('.btn.link-1');

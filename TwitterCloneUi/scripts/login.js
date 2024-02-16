@@ -1,5 +1,14 @@
 import handleInput from './utils/inputUtils.js';
-import { postLogIn } from './fetchAPI.js';
+import { postLogIn, sendToken } from './fetchAPI.js';
+
+const validateToken = () => {
+  console.log(sendToken);
+  if(sendToken.token !== "" ||  sendToken.token !== null) {
+    window.location.replace("home.html")
+  } else {
+    console.log("There is no existing token");
+  }
+}
 
 const validateForm = (formSelector, callback) => {
   const formElement = document.querySelector(formSelector);
@@ -96,6 +105,7 @@ const sendtoAPI =  async (formElement) => {
     }
 }
 
+validateToken();
 validateForm('#JS-loginForm', sendtoAPI);
 handleInput('.text-field input');
 
