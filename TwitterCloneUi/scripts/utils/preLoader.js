@@ -3,13 +3,6 @@ const loader = document.querySelector('.loader-section');
 const loaderIconWrapper = document.querySelector('.loader-icon-wrapper');
 const loaderLogo = document.querySelector('.loader-logo');
 
-function removeLoader() {
-  loader.remove(); 
-}
-function handleAnimationEnd() {
-  removeLoader();
-}
-
 window.addEventListener('load', () => {
   loader.classList.add('fade-out');
   loaderIconWrapper.classList.add('zoom-out');
@@ -17,6 +10,8 @@ window.addEventListener('load', () => {
   
   loader.classList.add('loader-hidden');
   loader.addEventListener('transitionend', () => {
-    document.body.removeChild(loader);
+    if (document.body.contains(loader)) {
+      document.body.removeChild(loader);
+    }
   });
 });
