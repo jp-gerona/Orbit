@@ -124,7 +124,8 @@ main .container .left {
 
 /* *Middle Side */
   /* *Create Post Card */
-  #postButton:disabled {
+  #postButton:disabled,
+  #postButtonModal:disabled {
     opacity: 0.5;
     cursor: not-allowed;
   }

@@ -60,8 +60,8 @@ export let getCurrentUser = {
   username: localStorage.getItem("user")
 }
 
-  export async function postCreatePost() {
-    var post = document.getElementById("writePost").value;
+  export async function postCreatePost(writePostSelector) {
+    let post = document.querySelector(writePostSelector).value;
     let token = localStorage.getItem("token");
 
     const res = await fetch('http://localhost:3000/api/v1/posts', {

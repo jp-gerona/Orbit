@@ -123,8 +123,47 @@ main .container .left {
 }
 
 /* *Middle Side */
-.middle .searchbar {
-  
+.middle .searchbar-container {
+  position: relative;
+  display: flex;
+  margin-bottom: 0.9rem;
+  max-width: 500px;
+}
+
+.middle .searchbar-container input {
+  flex: 1;
+  height: 48px;
+  padding-left: 15px;
+  padding-right: 35px;
+  color: var(--text);
+  background-color: transparent;
+  outline: none;
+  border: 1px solid var(--muted);
+  border-radius: 6px;
+  transition: border-color 0.3s ease;
+}
+
+.middle .searchbar-container input:focus {
+  border-color: var(--title);
+}
+
+.middle .searchbar-container i {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 12px;
+  color: var(--muted);
+  transition: color 0.3s ease;
+}
+
+.middle .searchbar-container input:focus~i {
+  color: var(--text);
+}
+
+.middle .users-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(225px, 1fr));
+  gap: 0.9rem;
 }
 
 /* *Other Styles */

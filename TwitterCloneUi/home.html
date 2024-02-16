@@ -99,6 +99,31 @@
       <div class="middle">
 
          <!-- * User Create Post Text Field Card -->
+        <form id="JS-createPostModal" class="post-card modal" autocomplete="off">
+
+            <div class="profile-photo">
+              <img src="./images/profile-photo-1.png" alt="Profile Photo">
+            </div>
+
+            <div class="post-container">
+              <textarea 
+                required
+                maxlength="300"
+                placeholder="What's on your mind?" 
+                id="writePostModal" 
+              ></textarea>
+              <hr>
+
+              <div class="button-container">
+                <div class="char-count"></div>
+                <button type="submit" value="Post" id="postButtonModal" class="btn primary-btn link-2">
+                  Post <i class="ri-arrow-right-line"></i>
+                </button>
+              </div>
+            </div>
+           
+        </form>
+
         <form id="JS-createPost" class="post-card" autocomplete="off">
 
             <div class="profile-photo">
@@ -114,7 +139,6 @@
               ></textarea>
               <hr>
 
-               <!-- todo FetchAPI to POST User's Text -->
               <div class="button-container">
                 <div class="char-count"></div>
                 <button type="submit" value="Post" id="postButton" class="btn primary-btn link-2">
