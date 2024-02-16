@@ -334,8 +334,10 @@ export async function likePostAPI(postId, isChecked) {
     if(res.ok){
       const userList = await res.json();
       const randomizedUserList = shuffleArray(userList);
-      displayUserList(randomizedUserList)
+      displayUserList(randomizedUserList);
+      
       //displayUserList(userList) // Non-Randomized - disable shuffleArray function too
+      displayExplore(randomizedUserList);
     }
   }
 
@@ -351,13 +353,12 @@ export async function likePostAPI(postId, isChecked) {
     const followDiv = document.querySelector('.suggest-follows-card');
     const userName = getCurrentUser.username;
     let displayedUsers = 0; 
-
     users.forEach(user => {
       followCheck(userName)
         .then(followerList => {
           for (let u of followerList) {
+            const checkbox = document.querySelector(`[data-username="${u}"]`);
             if (user === u) {
-              const checkbox = document.querySelector(`[data-username="${u}"]`);
               if (checkbox) {
                 const followState = checkbox.closest('.btn');
                 const followLabel = checkbox.nextElementSibling.querySelector('label');
@@ -372,7 +373,7 @@ export async function likePostAPI(postId, isChecked) {
             }
           }
         })
-  
+    
       if (user !== userName && displayedUsers < 3) {
         const userSuggestion = document.createElement("div");
         userSuggestion.className = "follow-container"
@@ -429,7 +430,6 @@ export async function likePostAPI(postId, isChecked) {
     followDiv.appendChild(showMore);
   }
   
-  
   async function followUser(user,following) { 
     let token = localStorage.getItem("token");
     const res = await fetch("http://localhost:3000/api/v1/users/"+user+"/following/"+following, {
@@ -474,4 +474,84 @@ export async function likePostAPI(postId, isChecked) {
     
     const followingCount = document.querySelector('.following-count');
     followingCount.innerHTML = `${numberOfFollowing} <span class="muted">Following</span>`;
+  }
+
+  export async function displayExplore(users) {
+    const userGrid = document.querySelector('.users-grid');
+    userGrid.innerHTML = '';
+
+    const userName = getCurrentUser.username;
+
+    users.forEach(user => {
+      followCheck(userName)
+        .then(followerList => {
+          for (let u of followerList) {
+            if (user === u) {
+              const checkbox = document.querySelector(`[data-username="${u}"]`);
+              checkbox.remove();
+              if (checkbox) {
+                const followState = checkbox.closest('.btn');
+                const followLabel = checkbox.nextElementSibling.querySelector('label');
+                checkbox.checked = true;
+                console.log(u, "is checked");
+                followState.classList.add('default-btn')
+                followState.classList.remove('primary-btn')
+                followLabel.innerText = "Unfollow"
+              } else {
+                console.log("can't see user: ", u)
+              }
+            }
+          }
+        })
+
+
+      if (user !== userName) {
+        const userProfile = document.createElement('div');
+        userProfile.classList.add('user-profile-card');
+        const randomCoverPhotoNumber = Math.floor(Math.random() * 4) + 1;
+        const randomProfilePhotoNumber = Math.floor(Math.random() * 4) + 1;
+
+        userProfile.innerHTML = `<div class="cover-container">
+          <img class="cover-photo" src="./images/background/cover-photo-${randomCoverPhotoNumber}.webp" alt="Cover Photo">
+          <div class="profile-photo">
+            <img src="./images/profile-photo-${randomProfilePhotoNumber}.png" alt="Profile Photo">
+          </div>
+        </div>
+        <div class="profile-container">
+          <div class="handle">
+            <h5 >`+user+`</h5> 
+            <p class="muted">@`+user+`</p> 
+          </div> 
+          <div class="btn primary-btn follow-btn">
+            <input type="checkbox" class="follow-box" data-username="${user}"/>
+            <div class="follow-btn-content link-1">
+              <label>Follow</label>
+            </div>
+          </div>`
+        userGrid.appendChild(userProfile);
+
+        const followButton = document.querySelector('[data-username='+user+']')
+  
+        followButton.addEventListener('click', function () {
+          const usernameToFollow = this.getAttribute('data-username');
+          const followState = followButton.closest('.btn');
+          const followLabel = this.nextElementSibling.querySelector('label');
+          
+          if (followButton.checked) {
+            console.log(`Followed ${usernameToFollow} by ${userName}`);
+            followUser(userName, usernameToFollow);
+            followState.classList.add('default-btn');
+            followState.classList.remove('primary-btn');
+            followLabel.innerText = "Unfollow"
+            
+          } else {
+            console.log(`Unfollowed ${usernameToFollow} by ${userName}`);
+            unfollowUser(userName, usernameToFollow);
+            followState.classList.remove('default-btn');
+            followState.classList.add('primary-btn');
+            followLabel.innerText = "Follow"
+          }
+        })
+      }
+    })  
   }

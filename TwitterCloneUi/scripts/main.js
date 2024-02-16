@@ -1,4 +1,4 @@
-import { postCreatePost, getPosts, fetchUserList, sendToken, getCurrentUser, likePostAPI, displayFollowing } from './fetchAPI.js';
+import { postCreatePost, getPosts, fetchUserList, sendToken, getCurrentUser, likePostAPI, displayFollowing, displayExplore } from './fetchAPI.js';
 import followUser from './utils/followUtils.js';
 
 const validateToken = () => {
@@ -134,18 +134,24 @@ export let displayCurrentUser = () => {
 }
 
 
+
 validateToken();
+
 displayCurrentUserHome();
 displayCurrentUserProfile();
 
+//HIGHER THAN LOADER! no touchie
+fetchUserList();
+
 validateForm('#JS-createPostModal', '#writePostModal', 'postButtonModal', sendtoAPI);
 validateForm('#JS-createPost', '#writePost', 'postButton', sendtoAPI);
-
+ 
 document.addEventListener("DOMContentLoaded", getPosts);
+
 likeHandler();
 followUser('.follow-btn');
 
-fetchUserList(); 
+
 userLogout();
 
 document.addEventListener('DOMContentLoaded', function () {
