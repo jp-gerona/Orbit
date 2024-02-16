@@ -186,7 +186,7 @@ export let getCurrentUser = {
       const trendItem = document.createElement("div");
       trendItem.className = "trend-item";
       trendItem.textContent = `#${hashtag}`;
-      trendItem.style.color = "hsl(233, 96%, 65%)";
+      trendItem.classList.add('secondary')
       trendCard.appendChild(trendItem);
     }
     console.log(hashtagCounts);
