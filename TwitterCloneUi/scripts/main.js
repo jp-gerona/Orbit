@@ -31,7 +31,9 @@ let displayCurrentUserProfile = () => {
   } else {
     console.log("Failure due to being in Homepage")
   }
-  displayFollowing();
+  if(window.location.pathname.startsWith('TwitterCloneUi/profile.html')){
+    displayFollowing();
+  }
 }
 
 const validateForm = (formSelector, writePostSelector, postButtonSelector, callback) => {
