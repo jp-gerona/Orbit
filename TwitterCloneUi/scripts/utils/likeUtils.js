@@ -13,6 +13,7 @@ export default function likePost(likeBtnSelector, postDetails) {
 
     for (let i = 0; i < postDetails.length; i++) {
       if(postDetails[i].postId === postId  && postDetails[i].likes.includes(currentUser)) {
+        checkbox.checked = true;
         likeBtn.classList.add('like-effect');
 
         heartIcon.classList.remove('ri-heart-line');
@@ -33,7 +34,7 @@ export default function likePost(likeBtnSelector, postDetails) {
 
         heartIcon.classList.remove('ri-heart-fill');
         heartIcon.classList.add('ri-heart-line');
-        label.textContent = 'Like Post';
+        label.textContent = 'Like Post';  
       }
     });
 
