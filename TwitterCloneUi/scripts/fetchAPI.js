@@ -80,44 +80,51 @@ export let getCurrentUser = {
     }
 }
 
-  export async function getPosts() {
-    let token = localStorage.getItem("token");
-  
-    try {
-      const res = await fetch('http://localhost:3000/api/v1/posts', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        },
-      });
-      if (!res.ok) {
-        throw new Error('Failed to fetch posts');
-      }
-      const data = await res.json();      
-      const postContents = data.map(post => post.content);
-      clearTrends();
-      getUserTrends(postContents);
+export async function getPosts() {
+  let token = localStorage.getItem("token");
 
-      const postsFeedContainer = document.querySelector(".posts-feed");
-      postsFeedContainer.innerHTML = '';
-      const postDetailsArray = [];
+  try {
+    const res = await fetch('http://localhost:3000/api/v1/posts', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+    });
 
-      data.forEach(post => {
-        const postCard = createPostElement(post.postedBy, post.postId, post.content, post.dateTimePosted, post.dateTimePosted, post.dateTimePosted, post.dateTimePosted, post.dateTimePosted);
-        const postDetails = {
-          postId: post.postId,
-          likes: post.likes
-        }
-        postDetailsArray.push(postDetails);
-        postsFeedContainer.prepend(postCard);
-        likePost('.feed-card .like-btn', postDetailsArray);
-        // retainLike(postDetailsArray)
-      });
-    } catch (error) {
-      console.error('Error occurred while fetching posts:', error);
+    if (!res.ok) {
+      throw new Error('Failed to fetch posts');
     }
+
+    const data = await res.json();
+
+    data.sort((a, b) => new Date(a.dateTimePosted) - new Date(b.dateTimePosted));
+
+    const postContents = data.map(post => post.content);
+    clearTrends();
+    getUserTrends(postContents);
+
+    const postsFeedContainer = document.querySelector(".posts-feed");
+    postsFeedContainer.innerHTML = '';
+    const postDetailsArray = [];
+
+    data.forEach(post => {
+      const postCard = createPostElement(post.postedBy, post.postId, post.content, post.dateTimePosted, post.dateTimePosted, post.dateTimePosted, post.dateTimePosted, post.dateTimePosted);
+      const postDetails = {
+        postId: post.postId,
+        likes: post.likes
+      }
+      postDetailsArray.push(postDetails);
+      postsFeedContainer.prepend(postCard);
+      likePost('.feed-card .like-btn', postDetailsArray);
+      // retainLike(postDetailsArray)
+    });
+  } catch (error) {
+    console.error('Error occurred while fetching posts:', error);
   }
+}
+
+
   
   async function getUserTrends(userPosts) {
     const trendCard = document.getElementById('trending-card');
@@ -240,7 +247,7 @@ const createPostElement = (username, postId, postText, timestamp1, timestamp2, t
     </div>
     <div class="post-container">
       <div class="user">
-        <h5>${username} <span class="handle muted">@${username}</span></h5>
+        <h5>${username} <span class="handle muted">@${username.toLowerCase()}</span></h5>
         <p class="primary">${hour}:${minute} ${dayornight} · ${month} ${day}, ${year}</p>
       </div>
       <div class="post-content">${hPostText}</div>
@@ -315,26 +322,6 @@ export async function likePostAPI(postId, isChecked) {
     const userName = getCurrentUser.username;
     let displayedUsers = 0; 
     users.forEach(user => {
-      followCheck(userName)
-        .then(followerList => {
-          for (let u of followerList) {
-            const checkbox = document.querySelector(`[data-username="${u}"]`);
-            if (user === u) {
-              if (checkbox) {
-                const followState = checkbox.closest('.btn');
-                const followLabel = checkbox.nextElementSibling.querySelector('label');
-                checkbox.checked = true;
-                console.log(u, "is checked");
-                followState.classList.add('default-btn')
-                followState.classList.remove('primary-btn')
-                followLabel.innerText = "Unfollow"
-              } else {
-                console.log("can't see user: ", u)
-              }
-            }
-          }
-        })
-    
       if (user !== userName && displayedUsers < 3) {
         const userSuggestion = document.createElement("div");
         userSuggestion.className = "follow-container"
@@ -346,7 +333,7 @@ export async function likePostAPI(postId, isChecked) {
             </div>
             <div class="handle">
               <h5>${user}</h5> 
-              <p class="muted">@${user}</p> 
+              <p class="muted">@${user.toLowerCase()}</p> 
             </div>
           </div>
   
@@ -356,8 +343,28 @@ export async function likePostAPI(postId, isChecked) {
               <label>Follow</label>
             </div>
           </div>`;
-  
+          followCheck(userName)
+          .then(followerList => {
+            for (let u of followerList) {
+              const checkbox = document.querySelector(`[data-username="${u}"]`);
+              if (user === u) {
+                if (checkbox) {
+                  const followState = checkbox.closest('.btn');
+                  const followLabel = checkbox.nextElementSibling.querySelector('label');
+                  checkbox.checked = true;
+                  console.log(u, "is checked");
+                  followState.classList.add('default-btn')
+                  followState.classList.remove('primary-btn')
+                  followLabel.innerText = "Unfollow"
+                  followDiv.removeChild(userSuggestion);
+                } else {
+                  console.log("can't see user: ", u)
+                }
+              }
+            }
+          })  
         followDiv.appendChild(userSuggestion);
+        
         displayedUsers++;
   
         const followButton = document.querySelector('[data-username='+user+']')
@@ -373,7 +380,6 @@ export async function likePostAPI(postId, isChecked) {
             followState.classList.add('default-btn');
             followState.classList.remove('primary-btn');
             followLabel.innerText = "Unfollow"
-            
           } else {
             console.log(`Unfollowed ${usernameToFollow} by ${userName}`);
             unfollowUser(userName, usernameToFollow);
@@ -391,6 +397,7 @@ export async function likePostAPI(postId, isChecked) {
     `
     followDiv.appendChild(showMore);
   }
+
   
   async function followUser(user,following) { 
     let token = localStorage.getItem("token");
@@ -490,7 +497,6 @@ export async function likePostAPI(postId, isChecked) {
             </div>
           </div>`
         userGrid.appendChild(userProfile);
-
         const followButton = document.querySelector('[data-username='+user+']')
   
         followButton.addEventListener('click', function () {
