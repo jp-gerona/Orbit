@@ -380,6 +380,7 @@ export async function likePostAPI(postId, isChecked) {
             followState.classList.add('default-btn');
             followState.classList.remove('primary-btn');
             followLabel.innerText = "Unfollow"
+            followDiv.removeChild(userSuggestion);
           } else {
             console.log(`Unfollowed ${usernameToFollow} by ${userName}`);
             unfollowUser(userName, usernameToFollow);
