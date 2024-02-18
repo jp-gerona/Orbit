@@ -96,7 +96,7 @@ const sendtoAPI =  async (formElement) => {
     }), {});
 
     try {
-      const result = await await postLogIn(formObject);
+      const result = await postLogIn(formObject);
       await handlePostLoginUserResult(formElement, result);
     } catch (error) {
       console.error('Error occurred while creating user:', error);
