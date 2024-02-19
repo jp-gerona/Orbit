@@ -149,6 +149,11 @@ main .container .left {
   margin-left: 1rem;
 }
 
+.middle .post-card .profile-photo {
+  display: flex;
+  align-self: flex-start;
+}
+
 .middle .post-card .post-container textarea {
   outline: none;
   border: none;
