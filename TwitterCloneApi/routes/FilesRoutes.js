@@ -1,12 +1,11 @@
 import express from "express";
-
 import fs from "fs";
 import path from "path";
+
 const router = express.Router();
 
 router.get("/", (req, res) => {
-  const rootFolder =
-    process.env.NODE_ENV === "development" ? "../TEMP" : "/tmp";
+  const rootFolder = process.env.NODE_ENV === "development" ? path.resolve(__dirname, "../TEMP") : "/tmp";
   const AUTH_FILE_PATH = path.join(rootFolder, "AUTH.json");
   const POSTS_FILE_PATH = path.join(rootFolder, "POSTS.json");
   const USERS_FILE_PATH = path.join(rootFolder, "USERS.json");
