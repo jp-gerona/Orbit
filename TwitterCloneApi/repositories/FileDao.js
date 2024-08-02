@@ -5,6 +5,10 @@ dotenv.config();
 
 const rootFolder = process.env.NODE_ENV === "development" ? path.resolve(__dirname, "../TEMP") : "/tmp";
 
+function ensureRootFolderExists() {
+  fs.mkdirSync(rootFolder, { recursive: true });
+}
+
 function saveData(key, value) {
   ensureRootFolderExists();
 
@@ -13,12 +17,6 @@ function saveData(key, value) {
 
   const fileContent = JSON.stringify(value, null, 2);
   fs.writeFileSync(filePath, fileContent, "utf-8");
-}
-
-function ensureRootFolderExists() {
-  if (!fs.existsSync(rootFolder)) {
-    fs.mkdirSync(rootFolder, { recursive: true });
-  }
 }
 
 function retrieveData(key) {
